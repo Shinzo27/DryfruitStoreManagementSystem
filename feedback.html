@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patel's Dryfruit and Masala</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/feedback.css">
+
+    <link rel="shortcut icon" type="x-icon" href="images\icon.ico">
+
+</head>
+
+<body>
+
+    <!-- header section starts     -->
+
+    <section class="header">
+
+        <img src="images\logo.png" class="logo">
+
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="Product.html">shop</a>
+            <a href="gallery.html">gallery</a>
+            <a href="Login.html">Login</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
+    </section>
+
+    <!-- order section starts  -->
+
+    <section class="order" id="order">
+
+        <div class="heading">
+            <span>Give Feedback!</span>
+            <h3>It Inspires us to improve!</h3>
+        </div>
+
+        <form action="index.html">
+            <div class="box-container">
+                <div class="box">
+                    <div class="inputBox">
+                        <span>First Name</span>
+                        <input type="text" placeholder="First name">
+                    </div>
+                    <div class="inputBox">
+                        <span>Last Name</span>
+                        <input type="text" placeholder="Last Name">
+                    </div>
+                    <div class="inputBox">
+                        <span>email</span>
+                        <input type="text" placeholder="Email">
+                    </div>
+                    <div class="inputBox">
+                        <span>Short Message</span>
+                        <input type="text" placeholder="Short Message">
+                    </div>
+                    <div class="inputBox">
+                        <span>Message</span>
+                        <textarea name="" placeholder="Your Message" id="" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <input type="submit" value="Submit feedback" class="btn">
+        </form>
+
+    </section>
+
+    <!-- order section ends -->
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+
+    <!-- custom js file link  -->
+    <script src="js/script.js"></script>
+
+    <script>
+        lightGallery(document.querySelector('.gallery .gallery-container'));
+    </script>
+</body>
+
+</html>

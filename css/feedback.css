@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600&display=swap");
+
+:root {
+  --peru: #cd9452;
+  --black: #222;
+  --white: #fff;
+  --light-black: #666;
+  --light-white: #ccc;
+  --light-bg: #f5f5f5;
+  --dark-bg: rgba(0, 0, 0, 0.7);
+  --border: 0.1rem solid #aaa;
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+* {
+  font-family: "Dosis", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.43, 1.1, 0.62, 1.08);
+  text-transform: capitalize;
+}
+
+* > img {
+  user-select: none;
+  pointer-events: none;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+html::-webkit-scrollbar {
+  width: 1rem;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+
+html::-webkit-scrollbar-thumb {
+  background-color: var(--peru);
+}
+
+section {
+  padding: 5rem 10%;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.heading span {
+  font-size: 2.5rem;
+  color: var(--peru);
+}
+
+.heading h3 {
+  font-size: 4.5rem;
+  color: var(--black);
+}
+
+.btn {
+  margin-top: 0.5rem;
+  display: inline-block;
+  background: var(--peru);
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 2rem;
+}
+
+.btn:hover {
+  letter-spacing: 0.1rem;
+}
+
+.header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+  width: 165px;
+}
+
+.header .navbar a {
+  font-size: 2rem;
+  margin-left: 2rem;
+  color: var(--light-black);
+}
+
+.header .navbar a:hover {
+  color: var(--peru);
+}
+
+#menu-btn {
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: var(--black);
+  display: none;
+}
+
+.order {
+  background: var(--peru);
+}
+
+.order .heading span {
+  color: var(--white);
+}
+
+.order .heading h3 {
+  color: var(--white);
+}
+
+.order form {
+  padding: 2rem;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+.order form .box-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.order form .box-container .box {
+  flex: 1 1 41rem;
+}
+
+.order form .box-container .box .inputBox input,
+.order form .box-container .box .inputBox textarea {
+  width: 100%;
+  margin: 1rem 0;
+  padding: 1.2rem 1.4rem;
+  font-size: 1.7rem;
+  color: var(--light-black);
+  border: var(--border);
+  text-transform: none;
+}
+
+.order form .box-container .box .inputBox input::placeholder,
+.order form .box-container .box .inputBox textarea::placeholder {
+  text-transform: capitalize;
+}
+
+.order form .box-container .box .inputBox input:focus,
+.order form .box-container .box .inputBox textarea:focus {
+  background: var(--black);
+  color: var(--white);
+}
+
+.order form .box-container .box .inputBox input:focus::placeholder,
+.order form .box-container .box .inputBox textarea:focus::placeholder {
+  color: var(--light-white);
+}
+
+.order form .box-container .box .inputBox textarea {
+  height: 20rem;
+  resize: none;
+}
+
+.order form .box-container .box .inputBox .map {
+  height: 20rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.order form .box-container .box .inputBox span {
+  color: var(--light-black);
+  font-size: 2rem;
+}
