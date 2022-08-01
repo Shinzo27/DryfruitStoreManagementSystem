@@ -182,7 +182,7 @@
          </div>
          <p>Rich in protein, healthy fats, and antioxidants such as polyphenols, cashews offer a variety of noteworthy
             health benefits.</p>
-         <div class="price">₹750/kg</div>
+         <div class="price">₹650/kg</div>
          <a href="Product.php" class="btn">buy now</a>
       </div>
 
