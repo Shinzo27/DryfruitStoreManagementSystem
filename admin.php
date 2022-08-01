@@ -35,13 +35,13 @@
 
         <nav class="navbar">
             <a href="#home">home</a>
-            <a href="Product.html">shop</a>
-            <a href="gallery.html">gallery</a>
+            <a href="Product.php">shop</a>
+            <a href="gallery.php">gallery</a>
             <a href="#about">about</a>
             <a href="#food">expertise</a>
             <a href="#blogs">reviews</a>
             <a href="#footer">Contact us</a>
-            <a href="Login.html">Login</a>
+            <a href="Login.php">Login</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>

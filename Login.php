@@ -32,10 +32,10 @@
     <img src="images\logo.png" class="logo">
 
     <nav class="navbar">
-      <a href="index.html">home</a>
-      <a href="Product.html">shop</a>
-      <a href="gallery.html">gallery</a>
-      <a href="cart.html">Cart</a>
+      <a href="index.php">home</a>
+      <a href="Product.php">shop</a>
+      <a href="gallery.php">gallery</a>
+      <a href="cart.php">Cart</a>
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
@@ -68,7 +68,7 @@
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-            <form action="index.html">
+            <form action="index.php">
               <div class="input-boxes">
                 <div class="input-box">
                   <i class="fas fa-envelope"></i>
@@ -83,7 +83,7 @@
                   <input type="submit" value="Submit">
                 </div>
                 <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label><br>
-                  <label>Click for <a href="admin.html">admin</a></label>
+                  <label>Click for <a href="admin.php">admin</a></label>
                 </div>
               </div>
             </form>

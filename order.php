@@ -29,8 +29,8 @@
      
     <nav class="navbar">
         <a href="#home">home</a>
-        <a href="Product.html">shop</a>
-        <a href="gallery.html">gallery</a>
+        <a href="Product.php">shop</a>
+        <a href="gallery.php">gallery</a>
         <a href="#about">about</a>
         <a href="#food">expertise</a>
         <a href="#blogs">reviews</a>

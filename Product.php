@@ -30,13 +30,13 @@
       <img src="images\logo.png" class="logo">
 
       <nav class="navbar">
-         <a href="index.html">home</a>
+         <a href="index.php">home</a>
          <a href="#dryfruit">dryfruits</a>
          <a href="#driedfruit">dried fruits</a>
          <a href="#namkeens">namkeens</a>
          <a href="#masala">masala</a>
          <a href="#colddrink">cold drinks</a>
-         <a href="cart.html">cart</a>
+         <a href="cart.php">cart</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>

@@ -28,10 +28,10 @@
       <img src="images\logo.png" class="logo">
 
       <nav class="navbar">
-         <a href="index.html">home</a>
-         <a href="gallery.html">gallery</a>
-         <a href="Product.html">menu</a>
-         <a href="Login.html">Login</a>
+         <a href="index.php">home</a>
+         <a href="gallery.php">gallery</a>
+         <a href="Product.php">menu</a>
+         <a href="Login.php">Login</a>
 
       </nav>
 

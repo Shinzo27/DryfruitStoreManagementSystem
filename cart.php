@@ -30,11 +30,11 @@
         <img src="images\logo.png" class="logo">
 
         <nav class="navbar">
-            <a href="index.html">home</a>
-            <a href="Product.html">shop</a>
-            <a href="gallery.html">gallery</a>
-            <a href="Login.html">Login</a>
-            <a href="cart.html">cart</a>
+            <a href="index.php">home</a>
+            <a href="Product.php">shop</a>
+            <a href="gallery.php">gallery</a>
+            <a href="Login.php">Login</a>
+            <a href="cart.php">cart</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>

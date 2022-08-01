@@ -31,14 +31,14 @@
 
       <nav class="navbar">
          <a href="#home">home</a>
-         <a href="Product.html">shop</a>
-         <a href="gallery.html">gallery</a>
+         <a href="Product.php">shop</a>
+         <a href="gallery.php">gallery</a>
          <a href="#about">about</a>
          <a href="#food">expertise</a>
          <a href="#blogs">reviews</a>
          <a href="#footer">Contact us</a>
-         <a href="Login.html">Login</a>
-         <a href="cart.html">Cart</a>
+         <a href="Login.php">Login</a>
+         <a href="cart.php">Cart</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -59,7 +59,7 @@
                <div class="content">
                   <span>Healthy Dryfruit</span>
                   <h3>Wealthy Life</h3>
-                  <a href="Product.html" class="btn">get started</a>
+                  <a href="Product.php" class="btn">get started</a>
                </div>
             </div>
 
@@ -67,7 +67,7 @@
                <div class="content">
                   <span>Need Spices?</span>
                   <h3>We have it too!</h3>
-                  <a href="Product.html" class="btn">get started</a>
+                  <a href="Product.php" class="btn">get started</a>
                </div>
             </div>
 
@@ -75,7 +75,7 @@
                <div class="content">
                   <span>Morning Breakfast?</span>
                   <h3>Have A Namkeen!</h3>
-                  <a href="Product.html" class="btn">get started</a>
+                  <a href="Product.php" class="btn">get started</a>
                </div>
             </div>
 
@@ -183,7 +183,7 @@
          <p>Rich in protein, healthy fats, and antioxidants such as polyphenols, cashews offer a variety of noteworthy
             health benefits.</p>
          <div class="price">₹750/kg</div>
-         <a href="Product.html" class="btn">buy now</a>
+         <a href="Product.php" class="btn">buy now</a>
       </div>
 
       <div class="food-preview" data-target="food-2">
@@ -199,7 +199,7 @@
          <p>Walnuts are round, single-seeded stone fruits that grow from the walnut tree. They are a good source of
             healthful fats, protein, and fiber.</p>
          <div class="price">₹670/kg</div>
-         <a href="Product.html" class="btn">buy now</a>
+         <a href="Product.php" class="btn">buy now</a>
       </div>
 
       <div class="food-preview" data-target="food-3">
@@ -214,7 +214,7 @@
          </div>
          <p>Almonds are rich in valuable nutrients for your body, like magnesium, vitamin E, and dietary fiber</p>
          <div class="price">650/kg</div>
-         <a href="Product.html" class="btn">buy now</a>
+         <a href="Product.php" class="btn">buy now</a>
       </div>
 
    </section>
@@ -296,7 +296,7 @@
             </div>
 
          </div>
-         <a href="feedback.html" class="btn">Add Feedback</a>
+         <a href="feedback.php" class="btn">Add Feedback</a>
          <div class="swiper-pagination"></div>
 
       </div>
