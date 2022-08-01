@@ -139,7 +139,7 @@
             <div class="swiper-slide slide" data-name="food-1">
                <img src="images/food-img-1.png" alt="">
                <h3>Cashew</h3>
-               <div class="price">₹800/kg</div>
+               <div class="price">₹650/kg</div>
             </div>
 
             <div class="swiper-slide slide" data-name="food-2">

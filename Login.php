@@ -57,7 +57,7 @@
           </div>
         </div>
         <div class="back">
-          <img class="backImg" src="images/backImg.jpg" alt="">
+          <img class="backImg" src="images/home-slide-1.jpg" alt="">
           <div class="text">
             <span class="text-1">Complete miles of journey <br> with one step</span>
             <span class="text-2">Let's get started</span>
