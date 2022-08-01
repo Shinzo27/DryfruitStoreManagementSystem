@@ -95,7 +95,9 @@
                     </div>
                     <div class="total-amount">₹350</div>
                 </div>
+                <a href="payment.php">
                 <button class="button">Checkout</button>
+                </a>
             </div>
         </div>
     </section>
