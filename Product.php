@@ -72,7 +72,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product1.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -93,7 +93,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product2.png" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -114,7 +114,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product3.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -135,7 +135,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product4.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -155,7 +155,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product5.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -175,7 +175,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product6.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -196,7 +196,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product7.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -217,7 +217,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product8.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -238,7 +238,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product9.jpg" style="float: right; width: 100px; height: 100px;">
                      </div>
@@ -259,7 +259,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product10.jpg"
                            style="float: right; width: 100px; height: 100px;">
@@ -280,7 +280,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product11.jpg"
                            style="float: right; width: 100px; height: 100px;">
@@ -302,7 +302,7 @@
                         </form>
                         <br>
                         <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Buy now</a><br>
+                        <a href="cart.php" class="btn">Add to cart</a>
                      </div>
                      <div class="img"><img src="images\product12.jpg"
                            style="float: right; width: 100px; height: 100px;">
@@ -334,7 +334,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit1.jpg" style="float: right; width: 100px; height: 100px;">
                </div>
@@ -355,7 +355,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit2.jpg" style="float: right; width: 100px; height: 100px;">
                </div>
@@ -376,7 +376,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit3.jpg" style="float: right; width: 100px; height: 100px;">
                </div>
@@ -397,7 +397,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit4.jpg" style="float: right; width: 100px; height: 100px;">
                </div>
@@ -418,7 +418,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit5.jpg" style="float: right; width: 100px; height: 100px;">
                </div>
@@ -439,7 +439,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\driedfruit6.jpg" style="float: right; width: 150px; height: 100px;">
                </div>
@@ -467,7 +467,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen1.png" style="float: right; width: 150px; height: 100px;">
                </div>
@@ -487,7 +487,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen2.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -507,7 +507,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen3.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -527,7 +527,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen4.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -547,7 +547,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen5.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -567,7 +567,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen6.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -587,7 +587,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen7.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -607,7 +607,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen8.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -627,7 +627,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen9.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -647,7 +647,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen10.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -667,7 +667,7 @@
                   </form>
                   <br>
                   <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Buy now</a><br>
+                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
                <div class="img"><img src="images\namkeen11.png" style="float: right; width: 150px; height: 150px;">
                </div>
@@ -693,7 +693,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala1.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -712,7 +712,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala2.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -731,7 +731,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala3.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -750,7 +750,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala4.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -769,7 +769,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala5.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -788,7 +788,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\Masala6.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -834,7 +834,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\colddrink2.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -853,7 +853,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\colddrink3.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
@@ -872,7 +872,7 @@
                      </form>
                      <br>
                      <a href="order.php" class="btn">Buy now</a><br>
-                     <a href="cart.php" class="btn">Buy now</a><br>
+                     <a href="cart.php" class="btn">Add to cart</a>
                   </div>
                   <div class="img"><img src="images\colddrink4.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
