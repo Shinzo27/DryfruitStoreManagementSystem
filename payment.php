@@ -20,24 +20,6 @@
 <body>
 <header>
 
-    <section class="header">
-
-        <img src="images\logo.png" class="logo">
-
-        <nav class="navbar">
-            <a href="index.php">home</a>
-            <a href="#dryfruit">dryfruits</a>
-            <a href="#driedfruit">dried fruits</a>
-            <a href="#namkeens">namkeens</a>
-            <a href="#masala">masala</a>
-            <a href="#colddrink">cold drinks</a>
-            <a href="cart.php">cart</a>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-
-    </section>
-
 	<div class="container">
 		<div class="left">
 			<h3>BILLING ADDRESS</h3>
@@ -74,8 +56,8 @@
 			<h3>PAYMENT</h3>
 			<form>
 				Accepted Card <br>
-				<img src="image/card1.png" width="100">
-				<img src="image/card2.png" width="50">
+				<img src="images/card1.png" width="100">
+				<img src="images/card2.png" width="50">
 				<br><br>
 
 				Credit card number
