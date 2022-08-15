@@ -28,13 +28,14 @@
     <img src="images\logo.png" class="logo">
      
     <nav class="navbar">
-        <a href="#home">home</a>
-        <a href="Product.php">shop</a>
-        <a href="gallery.php">gallery</a>
-        <a href="#about">about</a>
-        <a href="#food">expertise</a>
-        <a href="#blogs">reviews</a>
-        <a href="#footer">Contact us</a>
+         <a href="Product.php">shop</a>
+         <a href="gallery.php">gallery</a>
+         <a href="index.php#about">about</a>
+         <a href="index.php#food">expertise</a>
+         <a href="index.php#blogs">reviews</a>
+         <a href="index.php#footer">Contact us</a>
+         <a href="Login.php">Login</a>
+         <a href="cart.php">Cart</a>
     </nav>
      
     <div id="menu-btn" class="fas fa-bars"></div>
