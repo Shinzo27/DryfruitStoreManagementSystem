@@ -37,8 +37,8 @@
          <a href="#food">expertise</a>
          <a href="#blogs">reviews</a>
          <a href="#footer">Contact us</a>
-         <a href="Login.php">Login</a>
-         <a href="Login.php">Cart</a>
+         <a href="profile.php">Profile</a>
+         <a href="cart.php">Cart</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -296,7 +296,7 @@
             </div>
 
          </div>
-         <a href="Login.php" class="btn">Add Feedback</a>
+         <a href="feedback.php" class="btn">Add Feedback</a>
          <div class="swiper-pagination"></div>
 
       </div>
