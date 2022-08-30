@@ -213,6 +213,7 @@ section {
   height: 100%;
   width: 100%;
   background: #fff;
+
 }
 .container .form-content {
   display: flex;
@@ -225,7 +226,7 @@ section {
 }
 .forms .form-content .title {
   position: relative;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 500;
   color: #333;
 }
@@ -249,7 +250,7 @@ section {
   align-items: center;
   height: 50px;
   width: 100%;
-  margin: 10px 0;
+  margin: 5px 0;
   position: relative;
 }
 .form-content .input-box input {

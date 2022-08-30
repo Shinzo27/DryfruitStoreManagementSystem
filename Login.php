@@ -76,6 +76,13 @@
             <form action="afterlogin.php">
               <div class="input-boxes">
                 <div class="input-box">
+                <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white;">
+                  <option value="0">Admin</option>
+                  <option value="1">Customer</option>
+                </select>
+                <label style="color: grey; padding-left: 10px; font-size: 15px;">Select Customer/admin</label>
+                </div>
+                <div class="input-box">
                   <i class="fas fa-envelope"></i>
                   <input type="text" placeholder="Enter your username" required>
                 </div>
