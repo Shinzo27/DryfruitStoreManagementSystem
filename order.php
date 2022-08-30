@@ -28,6 +28,7 @@
     <img src="images\logo.png" class="logo">
      
     <nav class="navbar">
+         <a href="index.php">Home</a>
          <a href="Product.php">shop</a>
          <a href="gallery.php">gallery</a>
          <a href="index.php#about">about</a>
