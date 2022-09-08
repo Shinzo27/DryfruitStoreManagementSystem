@@ -1,3 +1,12 @@
+<?php
+   session_start();
+
+   if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
+   {
+      header("location: login.php");
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,14 +43,14 @@
         <img src="images\logo.png" class="logo">
 
         <nav class="navbar">
-            <a href="Product.php">shop</a>
-            <a href="gallery.php">gallery</a>
-            <a href="index.php#about">about</a>
-            <a href="index.php#food">expertise</a>
-            <a href="index.php#blogs">reviews</a>
-            <a href="index.php#footer">Contact us</a>
-            <a href="Login.php">Login</a>
-            <a href="cart.php">Cart</a>
+            <a href="Product.php">Dashboard</a>
+            <a href="gallery.php">Product</a>
+            <a href="index.php#about">Stocks</a>
+            <a href="index.php#food">Sales</a>
+            <a href="index.php#blogs">Users</a>
+            <a href="index.php#footer">Maintainance</a>
+            <a href="">Feedbacks</a>
+            <a href="logout.php">Logout</a>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
