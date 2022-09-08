@@ -1,12 +1,108 @@
+<?php
+  include 'partials/datacon.php';
+  $invaliduser = false;
+  $invalidadmin = false;
+  $passworderr = false;
+  $showalert = false;
+  $login = false;
+  $exists = false;
+  $existalert = false;
+  if(isset($_POST['rsub']))
+  { 
+    if(strlen($_POST['regpass']) >= 6)
+    {
+      $username = $_POST["username"];
+      $email = $_POST["email"];
+      $regpass = $_POST["regpass"];
+      
+      $existssql = "select * from tbluser where username = '$username'";
+      $existresult = mysqli_query($conn, $existssql);
+      $numrows = mysqli_num_rows($existresult);
+      if($numrows > 0)
+      {
+        $exists = true;
+      }
+      else
+      {
+        $exists = false;
+      }
+
+      if($exists == false)
+      {
+        $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `roll`, `date`) VALUES ('$username','$email','$regpass','customer',current_timestamp())";
+        $result = mysqli_query($conn,$sql);
+        if($result)
+        {
+          $showalert = true;
+        }
+      }
+      else
+      {
+        $existalert = true;
+      }
+    }
+    else
+    {
+      $passworderr = true;
+    }
+  }
+?>
+<?php
+  $loggedin = false;
+  if(isset($_POST['Lsub']))
+  {
+    if($_POST['roll'] == "customer")
+    {
+      $loguname = $_POST['loguname'];
+      $logpass = $_POST['logpass'];
+      $query = "SELECT * FROM `tbluser` WHERE roll='customer' AND (username='$loguname' AND password='$logpass')";
+      $res = mysqli_query($conn, $query);
+      $num = mysqli_num_rows($res);
+      if ($num >= 1)
+      {
+        $login = true;
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['loguname'] = $loguname;
+        header("location: afterlogin.php");
+      }
+      else
+      {
+        $invaliduser = true;
+      }
+    }
+    else if($_POST['roll'] == "admin")
+    {
+      $loguname = $_POST['loguname'];
+      $logpass = $_POST['logpass'];
+      $query = "SELECT * FROM `tbluser` WHERE roll='admin' AND (username='$loguname' AND password='$logpass')";
+      $res = mysqli_query($conn, $query);
+      $num = mysqli_num_rows($res);
+      if ($num >= 1)
+      {
+        $login = true;
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['loguname'] = $loguname;
+        header("location: admin.php");
+      }
+      else
+      {
+        $invalidadmin = true;
+      }
+    }
+  }
+
+?>
 <!DOCTYPE html>
-<!-- Created by CodingLab |www.youtube.com/c/CodingLabYT-->
 <html lang="en" dir="ltr">
 
 <head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <meta charset="UTF-8">
   <title>Patel's Dryfruit and Masala</title>
 
-  <!--<title> Login and Registration Form in HTML & CSS | CodingLab </title>-->
+
   <link rel="stylesheet" href="css/formstyle.css">
   <!-- Fontawesome CDN Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -14,11 +110,7 @@
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/css/lightgallery.min.css">
-
+  
 
   <link rel="shortcut icon" type="x-icon" href="images\icon.ico">
 </head>
@@ -45,11 +137,61 @@
 
     <div id="menu-btn" class="fas fa-bars"></div>
 
+    
+
   </section>
+  <?php
+      if($showalert == true)
+      {
+        echo '
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Registered Successful!</strong> Now you can Login!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        ';
+      }
 
+      if($passworderr == true)
+      {
+        echo '
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <strong>Your password should be contains 6 characters or more</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        ';
+      }
+
+      if($invaliduser == true)
+      {
+        echo '
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>User Not Found!</strong>Please Register First!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        ';
+      }
+
+      if($invalidadmin == true)
+      {
+        echo '
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Admin Not Found!</strong>Please Contact Admin!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        ';
+      }
+
+      if($existalert == true)
+      {
+        echo '
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <strong>Username already taken!</strong>Select another username!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        ';
+      }
+    ?>
   <!-- header section ends    -->
-
-
   <div class="card">
     <div class="container">
       <input type="checkbox" id="flip">
@@ -73,51 +215,50 @@
         <div class="form-content">
           <div class="login-form">
             <div class="title">Login</div>
-            <form action="afterlogin.php">
+            <form method="post">
               <div class="input-boxes">
                 <div class="input-box">
-                <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white;">
-                  <option value="0">Admin</option>
-                  <option value="1">Customer</option>
+                <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white; font-size: 14px;" name="roll">
+                  <option value="customer">Customer</option>
+                  <option value="admin">Admin</option>
                 </select>
                 <label style="color: grey; padding-left: 10px; font-size: 15px;">Select Customer/admin</label>
                 </div>
                 <div class="input-box">
                   <i class="fas fa-envelope"></i>
-                  <input type="text" placeholder="Enter your username" required>
+                  <input type="text" placeholder="Enter your username" name="loguname" required>
                 </div>
                 <div class="input-box">
                   <i class="fas fa-lock"></i>
-                  <input type="password" placeholder="Enter your password" required>
+                  <input type="password" placeholder="Enter your password" name="logpass" required>
                 </div>
                 <div class="text"><a href="#">Forgot password?</a></div>
                 <div class="button input-box">
-                  <input type="submit" value="Submit">
+                  <input type="submit" value="Submit" name="Lsub">
                 </div>
                 <div class="text sign-up-text">Don't have an account? <label for="flip">Sigup now</label><br>
-                  <label>Click for <a href="admin.php">admin</a></label>
                 </div>
               </div>
             </form>
           </div>
           <div class="signup-form">
             <div class="title">Signup</div>
-            <form action="#">
+            <form method="post">
               <div class="input-boxes">
                 <div class="input-box">
                   <i class="fas fa-user"></i>
-                  <input type="text" placeholder="Enter your username" required>
+                  <input type="text" placeholder="Enter your username" name="username" required>
                 </div>
                 <div class="input-box">
                   <i class="fas fa-envelope"></i>
-                  <input type="text" placeholder="Enter your email" required>
+                  <input type="email" placeholder="Enter your email" name="email" required>
                 </div>
                 <div class="input-box">
                   <i class="fas fa-lock"></i>
-                  <input type="password" placeholder="Enter your password" required>
+                  <input type="password" placeholder="Enter your password" name="regpass" required>
                 </div>
                 <div class="button input-box">
-                  <input type="submit" value="Submit">
+                  <input type="submit" value="Submit" name="rsub">
                 </div>
                 <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
               </div>
@@ -139,6 +280,7 @@
       lightGallery(document.querySelector('.gallery .gallery-container'));
    </script>
    
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 
 </html>

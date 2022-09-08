@@ -1,3 +1,25 @@
+<?php
+   session_start();
+
+   if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
+   {
+      header("location: login.php");
+   }
+?>
+
+<?php
+    $loggedin = false;
+    session_start();
+    if($_SESSION['loggedin'] == true)
+    {
+        $loggedin = true;
+    }
+    else
+    {
+        $loggedin = false;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +58,20 @@
             <a href="index.php#food">expertise</a>
             <a href="index.php#blogs">reviews</a>
             <a href="index.php#footer">Contact us</a>
-            <a href="Login.php">Login</a>
+            <?php
+                if($loggedin == true)
+                {
+                    ?>
+                    <a href="profile.php"><?php echo ($_SESSION['loguname']); ?></a>;
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <a href="Login.php">Login</a>;
+                    <?php
+                }
+            ?>
             <a href="cart.php">Cart</a>
         </nav>
 

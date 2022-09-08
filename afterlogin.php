@@ -1,3 +1,13 @@
+<?php
+   session_start();
+
+   if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
+   {
+      header("location: login.php");
+   }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,6 +16,8 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Patel's Dryfruit and Masala</title>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -22,7 +34,7 @@
 </head>
 
 <body>
-
+      
    <!-- header section starts     -->
 
    <section class="header">
@@ -30,15 +42,16 @@
       <img src="images\logo.png" class="logo">
 
       <nav class="navbar">
-         <a href="#home">home</a>
+         <a href="afterlogin.php">home</a>
          <a href="Product.php">shop</a>
          <a href="gallery.php">gallery</a>
          <a href="#about">about</a>
          <a href="#food">expertise</a>
          <a href="#blogs">reviews</a>
          <a href="#footer">Contact us</a>
-         <a href="profile.php">Profile</a>
+         <a href="profile.php"><?php echo ($_SESSION['loguname']) ?></a>
          <a href="cart.php">Cart</a>
+         <a href="logout.php">Log out</a>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -50,7 +63,7 @@
    <!-- home section starts  -->
 
    <section class="home" id="home">
-
+      
       <div class="swiper home-slider">
 
          <div class="swiper-wrapper">
@@ -376,6 +389,8 @@
    <script>
       lightGallery(document.querySelector('.gallery .gallery-container'));
    </script>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 </body>
 
