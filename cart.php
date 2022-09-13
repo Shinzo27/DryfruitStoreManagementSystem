@@ -8,8 +8,10 @@
 ?>
 
 <?php
+
+    session_start();
     $loggedin = false;
-    if($_SESSION['loggedin'] == true)
+    if(isset($_SESSION['loggedin']))
     {
         $loggedin = true;
     }

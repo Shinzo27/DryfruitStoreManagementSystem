@@ -1,7 +1,8 @@
 <?php
-    $loggedin = false;
+
     session_start();
-    if($_SESSION['loggedin'] == true)
+    $loggedin = false;
+    if(isset($_SESSION['loggedin']))
     {
         $loggedin = true;
     }

@@ -8,9 +8,10 @@
 ?>
 
 <?php
-    $loggedin = false;
+
     session_start();
-    if($_SESSION['loggedin'] == true)
+    $loggedin = false;
+    if(isset($_SESSION['loggedin']))
     {
         $loggedin = true;
     }
@@ -90,41 +91,40 @@
           <div class="box">
              <div class="inputBox">
                 <span>full name</span>
-                <input type="text" placeholder="enter your name">
+                <input type="text" placeholder="enter your name" name="name">
              </div>
              <div class="inputBox">
-                <span>food name</span>
-                <input type="text" placeholder="food you want">
+                <span>Apartment number/wing</span>
+                <input type="text" placeholder="enter your apt. Number/wing" name="aptnum">
              </div>
              <div class="inputBox">
-                <span>order details</span>
-                <input type="text" placeholder="specifics with food">
+                <span>Landmark</span>
+                <input type="text" placeholder="enter your landmark" name="landmark">
              </div>
              <div class="inputBox">
-                <span>your address</span>
-                <textarea name="" placeholder="enter your address" id="" cols="30" rows="10"></textarea>
+                <span>Village</span>
+                <input type="text" placeholder="enter your village" name="village">
              </div>
+             
           </div>
           <div class="box">
              <div class="inputBox">
-                <span>number</span>
-                <input type="number" placeholder="enter your number">
+                <span>Contact number</span>
+                <input type="number" placeholder="enter your number" name="cnum">
              </div>
              <div class="inputBox">
-                <span>how much</span>
-                <input type="number" placeholder="how many you want">
+                <span>Street/Apt. Name</span>
+                <input type="text" placeholder="enter your street" name="aptname">
              </div>
              <div class="inputBox">
-                <span>when you want</span>
-                <input type="datetime-local">
+                <span>City</span>
+                <input type="text" placeholder="enter your city" name="city">
              </div>
              <div class="inputBox">
-                <span>our address</span>
-                <iframe class="map"
-                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d60307.59083109428!2d72.840725!3d19.141651!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b63aceef0c69%3A0x2aa80cf2287dfa3b!2sJogeshwari%20West%2C%20Mumbai%2C%20Maharashtra%20400047!5e0!3m2!1sen!2sin!4v1642222128240!5m2!1sen!2sin"
-                   allowfullscreen="" loading="lazy"></iframe>
+                <span>State</span>
+                <input type="text" placeholder="enter your state" name="state">
              </div>
-          </div>
+          </div>  
        </div>
        <input type="submit" value="order now" class="btn">
     </form>

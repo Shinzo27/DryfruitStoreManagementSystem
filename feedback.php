@@ -8,9 +8,10 @@
 ?>
 
 <?php
-    $loggedin = false;
+
     session_start();
-    if($_SESSION['loggedin'] == true)
+    $loggedin = false;
+    if(isset($_SESSION['loggedin']))
     {
         $loggedin = true;
     }
@@ -52,6 +53,7 @@
         <img src="images\logo.png" class="logo">
 
         <nav class="navbar">
+            <a href="index.php">Home</a>
             <a href="Product.php">shop</a>
             <a href="gallery.php">gallery</a>
             <a href="index.php#about">about</a>
@@ -88,7 +90,7 @@
             <h3>It Inspires us to improve!</h3>
         </div>
 
-        <form action="index.php">
+        <form action="afterlogin.php">
             <div class="box-container">
                 <div class="box">
                     <div class="inputBox">
