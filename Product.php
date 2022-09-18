@@ -72,272 +72,44 @@
 
    </section>
 
-   <!-- gallery section ends -->
+
    <section class="menu" id="dryfruit">
 
       <div class="heading">
          <span>list</span>
          <h3>Our products</h3>
       </div>
-
       <div class="swiper menu-slider">
-
          <div class="swiper-wrapper">
-
             <div class="swiper-slide slide">
                <h3 class="title">Dryfruits</h3>
                <div class="box-container">
+                  <?php 
+                     include 'partials/datacon.php';
+                     $query = "select * from tblProduct where category='dryfruit'";
+                     $result = mysqli_query($conn,$query);
+                     while($row = mysqli_fetch_assoc($result)):    
+                  ?>
                   <div class="box">
                      <div class="info">
-
-                        <h3>Cashew</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
+                              <h3><?php echo $row['pname'];?></h3>
+                              <br>
+                              <form method="post">
+                                 <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
+                                 <select name="weight" style="width: 70px; height: 28px;">
+                                    <option value="500gm">500gm</option>
+                                    <option value="1kg">1kg</option>
+                                 </select>
+                              </form>
+                              <br>
+                              <a href="order.php" class="btn">Buy now</a><br>
+                              <a href="cart.php" class="btn">Add to cart</a>
                      </div>
-                     <div class="img"><img src="images\product1.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹650/kg</div>
+                           <div class="img"><img src="<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;">
+                           </div>
+                           <div class="price">₹<?php echo $row['price']; ?>/kg</div>
                   </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Almonds</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product2.png" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹650/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Pistacio</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product3.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹990/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Aloo</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product4.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹360/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-                        <h3>Red Raisins</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product5.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹290/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-                        <h3>Black Raisins</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product6.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹320/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Dates</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product7.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹300/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Anjeer</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product8.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹860/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Walnuts</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product9.jpg" style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹670/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Pumpkin Seeds</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product10.jpg"
-                           style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹420/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-                        <h3>Flex Seeds</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product11.jpg"
-                           style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹200/kg</div>
-                  </div>
-
-                  <div class="box">
-                     <div class="info">
-
-                        <h3>Sunflower Seeds</h3>
-                        <br>
-                        <form method="post">
-                           <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                           <select name="weight" style="width: 50px; height: 28px;">
-                              <option value="0">Kg</option>
-                              <option value="0">Gm</option>
-                           </select>
-                        </form>
-                        <br>
-                        <a href="order.php" class="btn">Buy now</a><br>
-                        <a href="cart.php" class="btn">Add to cart</a>
-                     </div>
-                     <div class="img"><img src="images\product12.jpg"
-                           style="float: right; width: 100px; height: 100px;">
-                     </div>
-                     <div class="price">₹200/kg</div>
-                  </div>
+                  <?php endwhile; ?>
 
                </div>
             </div>
@@ -346,140 +118,45 @@
    </section>
 
    <section class="menu" id="driedfruit">
-      <div class="swiper-slide slide">
-         <h3 class="title">Dried fruits</h3>
-         <div class="box-container">
-            <div class="box">
-               <div class="info">
+   <div class="swiper menu-slider">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide slide">
+               <h3 class="title">Driedfruits</h3>
+               <div class="box-container">
+                  <?php 
+                     include 'partials/datacon.php';
+                     $query = "select * from tblProduct where category='driedfruit'";
+                     $result = mysqli_query($conn,$query);
+                     while($row = mysqli_fetch_assoc($result)):    
+                  ?>
+                  <div class="box">
+                     <div class="info">
+                              <h3><?php echo $row['pname'];?></h3>
+                              <br>
+                              <form method="post">
+                                 <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
+                                 <select name="weight" style="width: 70px; height: 28px;">
+                                    <option value="500gm">500gm</option>
+                                    <option value="1kg">1kg</option>
+                                 </select>
+                              </form>
+                              <br>
+                              <a href="order.php" class="btn">Buy now</a><br>
+                              <a href="cart.php" class="btn">Add to cart</a>
+                     </div>
+                           <div class="img"><img src="<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;">
+                           </div>
+                           <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                  </div>
+                  <?php endwhile; ?>
 
-                  <h3>Dried Strawberry</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
                </div>
-               <div class="img"><img src="images\driedfruit1.jpg" style="float: right; width: 100px; height: 100px;">
-               </div>
-               <div class="price">₹520/kg</div>
             </div>
-
-            <div class="box">
-               <div class="info">
-
-                  <h3>Dried Kiwi</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
-               </div>
-               <div class="img"><img src="images\driedfruit2.jpg" style="float: right; width: 100px; height: 100px;">
-               </div>
-               <div class="price">₹520/kg</div>
-            </div>
-
-            <div class="box">
-               <div class="info">
-
-                  <h3>Dried Orange</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
-               </div>
-               <div class="img"><img src="images\driedfruit3.jpg" style="float: right; width: 100px; height: 100px;">
-               </div>
-               <div class="price">₹520/kg</div>
-            </div>
-
-            <div class="box">
-               <div class="info">
-
-                  <h3>Dried Green Pomelo</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
-               </div>
-               <div class="img"><img src="images\driedfruit4.jpg" style="float: right; width: 100px; height: 100px;">
-               </div>
-               <div class="price">₹430/kg</div>
-            </div>
-
-            <div class="box">
-               <div class="info">
-
-                  <h3>Dried Pineapple coin</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
-               </div>
-               <div class="img"><img src="images\driedfruit5.jpg" style="float: right; width: 100px; height: 100px;">
-               </div>
-               <div class="price">₹450/kg</div>
-            </div>
-
-            <div class="box">
-               <div class="info">
-
-                  <h3>Mix Dried Fruits</h3>
-                  <br>
-                  <form method="post">
-                     <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
-                        <option value="0">Kg</option>
-                        <option value="0">Gm</option>
-                     </select>
-                  </form>
-                  <br>
-                  <a href="order.php" class="btn">Buy now</a><br>
-                  <a href="cart.php" class="btn">Add to cart</a>
-               </div>
-               <div class="img"><img src="images\driedfruit6.jpg" style="float: right; width: 150px; height: 100px;">
-               </div>
-               <div class="price">₹1200/kg</div>
-            </div>
-
          </div>
       </div>
    </section>
 
-   <section class="menu" id="namkeens">
+   <!-- <section class="menu" id="namkeens">
       <div class="swiper-slide slide">
          <h3 class="title">Namkeens</h3>
          <div class="box-container">
@@ -490,7 +167,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -510,7 +187,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -530,7 +207,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -550,7 +227,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -570,7 +247,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -590,7 +267,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -610,7 +287,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Pkt</option>
                      </select>
                   </form>
@@ -630,7 +307,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Box</option>
                      </select>
                   </form>
@@ -650,7 +327,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Box</option>
                      </select>
                   </form>
@@ -670,7 +347,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Box</option>
                      </select>
                   </form>
@@ -690,7 +367,7 @@
                   <br>
                   <form method="post">
                      <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                     <select name="weight" style="width: 50px; height: 28px;">
+                     <select name="weight" style="width: 70px; height: 28px;">
                         <option value="0">Box</option>
                      </select>
                   </form>
@@ -716,7 +393,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -735,7 +412,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -754,7 +431,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -773,7 +450,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -792,7 +469,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -811,7 +488,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Pkt</option>
                         </select>
                      </form>
@@ -837,7 +514,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Bottle</option>
                         </select>
                      </form>
@@ -857,7 +534,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Bottle</option>
                         </select>
                      </form>
@@ -876,7 +553,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Bottle</option>
                         </select>
                      </form>
@@ -895,7 +572,7 @@
                      <br>
                      <form method="post">
                         <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
-                        <select name="weight" style="width: 50px; height: 28px;">
+                        <select name="weight" style="width: 70px; height: 28px;">
                            <option value="0">Bottle</option>
                         </select>
                      </form>
@@ -906,7 +583,7 @@
                   <div class="img"><img src="images\colddrink4.jpg" style="float: right; width: 150px; height: 150px;">
                   </div>
                   <div class="price">₹40/Bottle</div>
-               </div>
+               </div> -->
             </div>
          </div>
 
@@ -916,7 +593,7 @@
 
          </div>
 
-      </section>
+      </section> -->
 
       <!-- menu section ends -->
 
