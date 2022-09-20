@@ -1,97 +1,76 @@
 <?php
-  include 'partials/datacon.php';
-  $invaliduser = false;
-  $invalidadmin = false;
-  $passworderr = false;
-  $showalert = false;
-  $login = false;
-  $exists = false;
-  $existalert = false;
-  if(isset($_POST['rsub']))
-  { 
-    if(strlen($_POST['regpass']) >= 6)
-    {
-      $username = $_POST["username"];
-      $email = $_POST["email"];
-      $regpass = $_POST["regpass"];
-      
-      $existssql = "select * from tbluser where username = '$username'";
-      $existresult = mysqli_query($conn, $existssql);
-      $numrows = mysqli_num_rows($existresult);
-      if($numrows > 0)
-      {
-        $exists = true;
-      }
-      else
-      {
-        $exists = false;
-      }
+include 'partials/datacon.php';
+$invaliduser = false;
+$invalidadmin = false;
+$passworderr = false;
+$showalert = false;
+$login = false;
+$exists = false;
+$existalert = false;
+if (isset($_POST['rsub'])) {
+  if (strlen($_POST['regpass']) >= 6) {
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $regpass = $_POST["regpass"];
 
-      if($exists == false)
-      {
-        $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `roll`, `date`) VALUES ('$username','$email','$regpass','customer',current_timestamp())";
-        $result = mysqli_query($conn,$sql);
-        if($result)
-        {
-          $showalert = true;
-        }
-      }
-      else
-      {
-        $existalert = true;
-      }
+    $existssql = "select * from tbluser where username = '$username'";
+    $existresult = mysqli_query($conn, $existssql);
+    $numrows = mysqli_num_rows($existresult);
+    if ($numrows > 0) {
+      $exists = true;
+    } else {
+      $exists = false;
     }
-    else
-    {
-      $passworderr = true;
+
+    if ($exists == false) {
+      $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `roll`, `date`) VALUES ('$username','$email','$regpass','customer',current_timestamp())";
+      $result = mysqli_query($conn, $sql);
+      if ($result) {
+        $showalert = true;
+      }
+    } else {
+      $existalert = true;
     }
+  } else {
+    $passworderr = true;
   }
+}
 ?>
 <?php
-  $loggedin = false;
-  if(isset($_POST['Lsub']))
-  {
-    if($_POST['roll'] == "customer")
-    {
-      $loguname = $_POST['loguname'];
-      $logpass = $_POST['logpass'];
-      $query = "SELECT * FROM `tbluser` WHERE roll='customer' AND (username='$loguname' AND password='$logpass')";
-      $res = mysqli_query($conn, $query);
-      $num = mysqli_num_rows($res);
-      if ($num >= 1)
-      {
-        $login = true;
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['loguname'] = $loguname;
-        header("location: afterlogin.php");
-      }
-      else
-      {
-        $invaliduser = true;
-      }
+$loggedin = false;
+if (isset($_POST['Lsub'])) {
+  if ($_POST['roll'] == "customer") {
+    $loguname = $_POST['loguname'];
+    $logpass = $_POST['logpass'];
+    $query = "SELECT * FROM `tbluser` WHERE roll='customer' AND (username='$loguname' AND password='$logpass')";
+    $res = mysqli_query($conn, $query);
+    $num = mysqli_num_rows($res);
+    if ($num >= 1) {
+      $login = true;
+      session_start();
+      $_SESSION['loggedin'] = true;
+      $_SESSION['loguname'] = $loguname;
+      header("location: afterlogin.php");
+    } else {
+      $invaliduser = true;
     }
-    else if($_POST['roll'] == "admin")
-    {
-      $loguname = $_POST['loguname'];
-      $logpass = $_POST['logpass'];
-      $query = "SELECT * FROM `tbluser` WHERE roll='admin' AND (username='$loguname' AND password='$logpass')";
-      $res = mysqli_query($conn, $query);
-      $num = mysqli_num_rows($res);
-      if ($num >= 1)
-      {
-        $login = true;
-        session_start();
-        $_SESSION['loggedin'] = true;
-        $_SESSION['loguname'] = $loguname;
-        header("location: admin.php");
-      }
-      else
-      {
-        $invalidadmin = true;
-      }
+  } else if ($_POST['roll'] == "admin") {
+    $loguname = $_POST['loguname'];
+    $logpass = $_POST['logpass'];
+    $query = "SELECT * FROM `tbluser` WHERE roll='admin' AND (username='$loguname' AND password='$logpass')";
+    $res = mysqli_query($conn, $query);
+    $num = mysqli_num_rows($res);
+    if ($num >= 1) {
+      $login = true;
+      session_start();
+      $_SESSION['loggedin'] = true;
+      $_SESSION['loguname'] = $loguname;
+      header("location: admin\index.php");
+    } else {
+      $invalidadmin = true;
     }
   }
+}
 
 ?>
 <!DOCTYPE html>
@@ -110,7 +89,7 @@
 
   <!-- font awesome cdn link  -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
+
 
   <link rel="shortcut icon" type="x-icon" href="images\icon.ico">
 </head>
@@ -124,73 +103,68 @@
     <img src="images\logo.png" class="logo">
 
     <nav class="navbar">
-        <a href="index.php">home</a>
-         <a href="Product.php">shop</a>
-         <a href="gallery.php">gallery</a>
-         <a href="index.php#about">about</a>
-         <a href="index.php#food">expertise</a>
-         <a href="index.php#blogs">reviews</a>
-         <a href="index.php#footer">Contact us</a>
-         <a href="Login.php">Login</a>
-         <a href="cart.php">Cart</a>
+      <a href="index.php">home</a>
+      <a href="Product.php">shop</a>
+      <a href="gallery.php">gallery</a>
+      <a href="index.php#about">about</a>
+      <a href="index.php#food">expertise</a>
+      <a href="index.php#blogs">reviews</a>
+      <a href="index.php#footer">Contact us</a>
+      <a href="Login.php">Login</a>
+      <a href="cart.php">Cart</a>
     </nav>
 
     <div id="menu-btn" class="fas fa-bars"></div>
 
-    
+
 
   </section>
   <?php
-      if($showalert == true)
-      {
-        echo '
+  if ($showalert == true) {
+    echo '
           <div class="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Registered Successful!</strong> Now you can Login!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         ';
-      }
+  }
 
-      if($passworderr == true)
-      {
-        echo '
+  if ($passworderr == true) {
+    echo '
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
           <strong>Your password should be contains 6 characters or more</strong>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         ';
-      }
+  }
 
-      if($invaliduser == true)
-      {
-        echo '
+  if ($invaliduser == true) {
+    echo '
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>User Not Found!</strong>Please Register First!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         ';
-      }
+  }
 
-      if($invalidadmin == true)
-      {
-        echo '
+  if ($invalidadmin == true) {
+    echo '
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>Admin Not Found!</strong>Please Contact Admin!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         ';
-      }
+  }
 
-      if($existalert == true)
-      {
-        echo '
+  if ($existalert == true) {
+    echo '
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>Username already taken!</strong>Select another username!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         ';
-      }
-    ?>
+  }
+  ?>
   <!-- header section ends    -->
   <div class="card">
     <div class="container">
@@ -218,11 +192,11 @@
             <form method="post">
               <div class="input-boxes">
                 <div class="input-box">
-                <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white; font-size: 14px;" name="roll">
-                  <option value="customer">Customer</option>
-                  <option value="admin">Admin</option>
-                </select>
-                <label style="color: grey; padding-left: 10px; font-size: 15px;">Select Customer/admin</label>
+                  <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white; font-size: 14px;" name="roll">
+                    <option value="customer">Customer</option>
+                    <option value="admin">Admin</option>
+                  </select>
+                  <label style="color: grey; padding-left: 10px; font-size: 15px;">Select Customer/admin</label>
                 </div>
                 <div class="input-box">
                   <i class="fas fa-envelope"></i>
@@ -268,19 +242,19 @@
       </div>
     </div>
   </div>
-  
+
   <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
 
-   <!-- custom js file link  -->
-   <script src="js/script.js"></script>
+  <!-- custom js file link  -->
+  <script src="js/script.js"></script>
 
-   <script>
-      lightGallery(document.querySelector('.gallery .gallery-container'));
-   </script>
-   
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  <script>
+    lightGallery(document.querySelector('.gallery .gallery-container'));
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 
 </html>
