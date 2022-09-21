@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2022 at 07:11 PM
+-- Generation Time: Sep 21, 2022 at 07:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -55,11 +55,12 @@ INSERT INTO `tblproduct` (`pid`, `pname`, `category`, `pimage`, `price`, `status
 --
 
 CREATE TABLE `tbluser` (
-  `id` int(10) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `uid` int(40) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `password` varchar(256) NOT NULL,
-  `roll` enum('admin','customer') NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `otp` varchar(256) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,13 +68,9 @@ CREATE TABLE `tbluser` (
 -- Dumping data for table `tbluser`
 --
 
-INSERT INTO `tbluser` (`id`, `username`, `email`, `password`, `roll`, `date`) VALUES
-(33, 'Admin123', 'Admin@gmail.com', 'Admin123', 'admin', '2022-08-31 20:17:36'),
-(34, 'Pratham27', '20bmiit031@gmail.com', 'Pratham@27', 'customer', '2022-08-31 20:18:03'),
-(35, 'Rohan9998', 'rohan@gmail.com', 'Rohan123', 'customer', '2022-08-31 20:41:51'),
-(37, 'Pratham5553', '20bmiit031@gmail.com', '1234', 'customer', '2022-09-02 09:56:21'),
-(38, 'Shinzo', 'shinzo@gmail.com', 'shinzo27', 'customer', '2022-09-02 10:41:26'),
-(41, 'virus', 'virus@gmail.com', 'virus123', 'customer', '2022-09-02 10:43:14');
+INSERT INTO `tbluser` (`uid`, `username`, `email`, `password`, `role`, `otp`, `date`) VALUES
+(1, 'Pratham27', 'prathampatel5553@gmail.com', '$2y$10$Q8pRZHHNKgTqjVz9nYpEJeTJ7DPEGRYay7KB/I/DgG2fRVjdda11i', 'customer', 'd7545eb001cd', '2022-09-21 21:54:06'),
+(3, 'Pratham5553', 'prathampatel@gmail.com', '$2y$10$tniksmUya5hj.oseH2OSS.QgF09Di4xTQoXrJ./XBnv2WlFnjRIj2', 'customer', '120108', '2022-09-21 21:58:22');
 
 --
 -- Indexes for dumped tables
@@ -90,8 +87,9 @@ ALTER TABLE `tblproduct`
 -- Indexes for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
+  ADD PRIMARY KEY (`uid`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -107,7 +105,7 @@ ALTER TABLE `tblproduct`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `uid` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
