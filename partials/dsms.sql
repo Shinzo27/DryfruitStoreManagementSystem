@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 21, 2022 at 07:13 PM
+-- Generation Time: Sep 22, 2022 at 08:49 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -69,8 +69,12 @@ CREATE TABLE `tbluser` (
 --
 
 INSERT INTO `tbluser` (`uid`, `username`, `email`, `password`, `role`, `otp`, `date`) VALUES
-(1, 'Pratham27', 'prathampatel5553@gmail.com', '$2y$10$Q8pRZHHNKgTqjVz9nYpEJeTJ7DPEGRYay7KB/I/DgG2fRVjdda11i', 'customer', 'd7545eb001cd', '2022-09-21 21:54:06'),
-(3, 'Pratham5553', 'prathampatel@gmail.com', '$2y$10$tniksmUya5hj.oseH2OSS.QgF09Di4xTQoXrJ./XBnv2WlFnjRIj2', 'customer', '120108', '2022-09-21 21:58:22');
+(3, 'Pratham5553', 'prathampatel@gmail.com', '$2y$10$tniksmUya5hj.oseH2OSS.QgF09Di4xTQoXrJ./XBnv2WlFnjRIj2', 'customer', '120108', '2022-09-21 21:58:22'),
+(11, 'Pratham Patel', '20bmiit031@gmail.com', '$2y$10$lfOOxlsoOvIax5GMST4ORuJ9rTkRe0emxnGuuyWAQVdnHZQPWwo1m', 'customer', '681355', '2022-09-22 20:24:13'),
+(12, 'Rohan Vaghasiya', '5553pkp@gmail.com', '$2y$10$RmGGW94/rNs6CH.av5d.4.uEB3tU.7IzeC8umBCae.PqgHMQa/DtS', 'customer', '623468', '2022-09-22 20:48:19'),
+(13, 'admin123', 'admin123@gmail.com', '$2a$04$C3BNLhyRNZLXBPvuFGPdXOfKuQrVJAzTFfM7AD70lHSGYf9Rd53kO', 'admin', '123456', '2022-09-22 22:13:44'),
+(14, 'Pratham Patel', 'shinzopatel@gmail.com', '$2y$10$G/6s/eSV0bZU1iZzKwNl0O3Z40tdbts3hSl8mG9xrgeNwFxJO7o7K', 'customer', '452608', '2022-09-22 22:26:29'),
+(15, 'Pratham Patel', 'prathampatel5553@gmail.com', '$2y$10$lW/4UKmPcmrXWexNC26VH.lsFkxqrTB64MULqAchYoY4/n6dfHtw6', 'customer', '195780', '2022-09-23 00:09:54');
 
 --
 -- Indexes for dumped tables
@@ -88,7 +92,6 @@ ALTER TABLE `tblproduct`
 --
 ALTER TABLE `tbluser`
   ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `username` (`username`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
@@ -105,7 +108,7 @@ ALTER TABLE `tblproduct`
 -- AUTO_INCREMENT for table `tbluser`
 --
 ALTER TABLE `tbluser`
-  MODIFY `uid` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `uid` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
