@@ -1,24 +1,20 @@
 <?php
-   session_start();
+session_start();
 
-   if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
-   {
-      header("location: login.php");
-   }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
+    header("location: Signin.php");
+}
 ?>
 
 <?php
 
-    session_start();
+session_start();
+$loggedin = false;
+if (isset($_SESSION['loggedin'])) {
+    $loggedin = true;
+} else {
     $loggedin = false;
-    if(isset($_SESSION['loggedin']))
-    {
-        $loggedin = true;
-    }
-    else
-    {
-        $loggedin = false;
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +49,7 @@
         <img src="images\logo.png" class="logo">
 
         <nav class="navbar">
-            <a href="index.php">Home</a>
+            <a href="index.php">home</a>
             <a href="Product.php">shop</a>
             <a href="gallery.php">gallery</a>
             <a href="index.php#about">about</a>
@@ -61,20 +57,22 @@
             <a href="index.php#blogs">reviews</a>
             <a href="index.php#footer">Contact us</a>
             <?php
-                if($loggedin == true)
-                {
-                    ?>
-                    <a href="profile.php"><?php echo ($_SESSION['loguname']); ?></a>;
-                    <?php
-                }
-                else
-                {
-                    ?>
-                    <a href="Login.php">Login</a>;
-                    <?php
-                }
+            if ($loggedin == true) {
+            ?>
+                <a href="profile.php"><?php echo ($_SESSION['loguname']); ?></a>;
+            <?php
+            } else {
+            ?>
+                <a href="Signin.php">Login</a>;
+            <?php
+            }
             ?>
             <a href="cart.php">Cart</a>
+            <?php
+            if ($loggedin == true) { ?>
+                <a href="logout.php">Log out</a>
+            <?php }
+            ?>
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>

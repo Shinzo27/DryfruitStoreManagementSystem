@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+$loggedin = false;
+if (isset($_SESSION['loggedin'])) {
+   $loggedin = true;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,15 +39,30 @@
       <img src="images\logo.png" class="logo">
 
       <nav class="navbar">
-         <a href="#home">home</a>
+         <a href="index.php">home</a>
          <a href="Product.php">shop</a>
          <a href="gallery.php">gallery</a>
-         <a href="#about">about</a>
-         <a href="#food">expertise</a>
-         <a href="#blogs">reviews</a>
-         <a href="#footer">Contact us</a>
-         <a href="Login.php">Login</a>
+         <a href="index.php#about">about</a>
+         <a href="index.php#food">expertise</a>
+         <a href="index.php#blogs">reviews</a>
+         <a href="index.php#footer">Contact us</a>
+         <?php
+         if ($loggedin == true) {
+         ?>
+            <a href="profile.php"><?php echo ($_SESSION['loguname']); ?></a>;
+         <?php
+         } else {
+         ?>
+            <a href="Signin.php">Login</a>;
+         <?php
+         }
+         ?>
          <a href="cart.php">Cart</a>
+         <?php
+         if ($loggedin == true) { ?>
+            <a href="logout.php">Log out</a>
+         <?php }
+         ?>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -296,7 +320,7 @@
             </div>
 
          </div>
-         <a href="Login.php" class="btn">Add Feedback</a>
+         <a href="feedback.php" class="btn">Add Feedback</a>
          <div class="swiper-pagination"></div>
 
       </div>

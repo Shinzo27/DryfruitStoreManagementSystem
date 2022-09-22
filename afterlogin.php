@@ -1,10 +1,14 @@
 <?php
-   session_start();
+session_start();
 
-   if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false)
-   {
-      header("location: login.php");
-   }
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
+   header("location: login.php");
+}
+
+$loggedin = false;
+if (isset($_SESSION['loggedin'])) {
+   $loggedin = true;
+}
 ?>
 
 
@@ -34,7 +38,7 @@
 </head>
 
 <body>
-      
+
    <!-- header section starts     -->
 
    <section class="header">
@@ -42,7 +46,7 @@
       <img src="images\logo.png" class="logo">
 
       <nav class="navbar">
-         <a href="afterlogin.php">home</a>
+         <a href="index.php">Home</a>
          <a href="Product.php">shop</a>
          <a href="gallery.php">gallery</a>
          <a href="#about">about</a>
@@ -51,7 +55,11 @@
          <a href="#footer">Contact us</a>
          <a href="profile.php"><?php echo ($_SESSION['loguname']) ?></a>
          <a href="cart.php">Cart</a>
-         <a href="logout.php">Log out</a>
+         <?php
+         if ($loggedin == true) { ?>
+            <a href="logout.php">Log out</a>
+         <?php }
+         ?>
       </nav>
 
       <div id="menu-btn" class="fas fa-bars"></div>
@@ -63,7 +71,7 @@
    <!-- home section starts  -->
 
    <section class="home" id="home">
-      
+
       <div class="swiper home-slider">
 
          <div class="swiper-wrapper">
