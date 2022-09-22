@@ -1,48 +1,64 @@
 <?php
 include 'partials/datacon.php';
+session_start();
 $invaliduser = false;
 $invalidadmin = false;
 $passworderr = false;
 $showalert = false;
 $login = false;
-$exists = false;
 $existalert = false;
-if (isset($_POST['rsub'])) {
+$getotp = false;
+if (isset($_POST['getotp'])) {
   if (strlen($_POST['regpass']) >= 6) {
     $username = $_POST["username"];
     $email = $_POST["email"];
     $regpass = $_POST["regpass"];
 
-    $existssql = "select * from tbluser where username = '$username'";
-    $existresult = mysqli_query($conn, $existssql);
-    $numrows = mysqli_num_rows($existresult);
-    if ($numrows > 0) {
-      $exists = true;
-    } else {
-      $exists = false;
-    }
+    // $existssql = "select * from tbluser where username = '$username'";
+    // $existresult = mysqli_query($conn, $existssql);
+    // $numrows = mysqli_num_rows($existresult);
+    // if ($numrows > 0) {
+    //   $exists = true;
+    // } 
+    // else {
+    //   $exists = false;
+    // }
 
-    if ($exists == false) {
-      $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `roll`, `date`) VALUES ('$username','$email','$regpass','customer',current_timestamp())";
+    // $emailquery = "select * from tbluser where email = '$email'";
+    //   $emailresult = mysqli_query($conn, $emailquery);
+    //   $emailrows = mysqli_num_rows($emailresult);
+    //   if($emailrows > 0) {
+    //     $exists = true;
+    //   }
+    //   else {
+    //     $exists = false;
+    //   }
+
+      $otp = rand(100000,999999);
+      $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `role`, `otp`, `date`) VALUES ('$username','$email','$regpass','customer','$otp',current_time())";
       $result = mysqli_query($conn, $sql);
       if ($result) {
-        $showalert = true;
+        $getotp = true;
+      } 
+      else 
+      {
+        $existalert = true;
       }
-    } else {
-      $existalert = true;
-    }
-  } else {
+  } 
+  else 
+  {
     $passworderr = true;
   }
 }
+
 ?>
 <?php
 $loggedin = false;
 if (isset($_POST['Lsub'])) {
-  if ($_POST['roll'] == "customer") {
+  if ($_POST['role'] == "customer") {
     $loguname = $_POST['loguname'];
     $logpass = $_POST['logpass'];
-    $query = "SELECT * FROM `tbluser` WHERE roll='customer' AND (username='$loguname' AND password='$logpass')";
+    $query = "SELECT * FROM `tbluser` WHERE role='customer' AND (username='$loguname' AND password='$logpass')";
     $res = mysqli_query($conn, $query);
     $num = mysqli_num_rows($res);
     if ($num >= 1) {
@@ -54,10 +70,10 @@ if (isset($_POST['Lsub'])) {
     } else {
       $invaliduser = true;
     }
-  } else if ($_POST['roll'] == "admin") {
+  } else if ($_POST['role'] == "admin") {
     $loguname = $_POST['loguname'];
     $logpass = $_POST['logpass'];
-    $query = "SELECT * FROM `tbluser` WHERE roll='admin' AND (username='$loguname' AND password='$logpass')";
+    $query = "SELECT * FROM `tbluser` WHERE role='admin' AND (username='$loguname' AND password='$logpass')";
     $res = mysqli_query($conn, $query);
     $num = mysqli_num_rows($res);
     if ($num >= 1) {
@@ -156,15 +172,16 @@ if (isset($_POST['Lsub'])) {
         ';
   }
 
-  if ($existalert == true) {
-    echo '
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Username already taken!</strong>Select another username!
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        ';
-  }
-  ?>
+  // if ($exists == true) {
+  //   echo '
+  //         <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  //         <strong>Username or email already taken!</strong>Select another username or login with email!
+  //         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  //         </div>
+  //       ';
+  // }
+
+?>
   <!-- header section ends    -->
   <div class="card">
     <div class="container">
@@ -192,7 +209,7 @@ if (isset($_POST['Lsub'])) {
             <form method="post">
               <div class="input-boxes">
                 <div class="input-box">
-                  <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white; font-size: 14px;" name="roll">
+                  <select style="width: 80px; height: 30px; background-color: #7d2ae8; color: white; font-size: 14px;" name="role">
                     <option value="customer">Customer</option>
                     <option value="admin">Admin</option>
                   </select>
@@ -232,7 +249,14 @@ if (isset($_POST['Lsub'])) {
                   <input type="password" placeholder="Enter your password" name="regpass" required>
                 </div>
                 <div class="button input-box">
-                  <input type="submit" value="Submit" name="rsub">
+                  <input type="submit" value="Get Otp" name="getotp">
+                </div>
+                <div class="input-box">
+                  <i class="fas fa-bookmark"></i>
+                  <input type="text" placeholder="Enter OTP" name="getotp">
+                </div>
+                <div class="button input-box">
+                  <input type="submit" value="Register" name="register">
                 </div>
                 <div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
               </div>
