@@ -1,4 +1,5 @@
 <?php
+
 include 'partials\datacon.php';
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
@@ -48,11 +49,19 @@ if (isset($_SESSION['loggedin'])) {
 
 <body>
     <?php
-    $mailsent = false;
-    if ($mailsent) {
+    $passupdated = false;
+    $passerr = false;
+    if ($passupdated) {
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> ' . $mailsent . '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Success</strong> ' . $passupdated . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+    }
+
+    if ($passerr) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> ' . $passerr . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
     }
     ?>
@@ -104,9 +113,9 @@ if (isset($_SESSION['loggedin'])) {
                     </div>
                     <div class="content-wthree" style="padding-top: 15%;">
                         <h2>Reset Password</h2>
-                        <p>Forget Password? Don't worry just enter your email and Check Email</p>
+                        <p>Enter The New Password</p>
                         <form action="" method="post">
-                            <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
+                            <input type="password" class="email" name="password" placeholder="Enter New Password" required>
                             <button name="submit" class="btn" type="submit">Reset Password</button>
                         </form>
                     </div>
@@ -131,96 +140,35 @@ if (isset($_SESSION['loggedin'])) {
 </body>
 
 </html>
+
 <?php
+$passerr = false;
+$passupdated = false;
+if (isset($_POST["submit"])) {
+    include('partials\datacon.php');
+    $psw = $_POST["password"];
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+    session_start();
+    $email = $_SESSION['email'];
 
-require('PHPMailer.php');
-require('Exception.php');
-require('SMTP.php');
+    $hash = password_hash($psw, PASSWORD_DEFAULT);
 
-$showsuccess = false;
-$showerror = false;
-$mailsent = true;
+    $sql = mysqli_query($conn, "SELECT * FROM tbluser WHERE email='$email'");
+    $query = mysqli_num_rows($sql);
+    $fetch = mysqli_fetch_assoc($sql);
 
-if (isset($_POST['submit'])) {
-
-    $email = $_POST['email'];
-
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $showerror = " Invalid Email-Id";
-    } else {
-
-        $emailSql = "SELECT * FROM tbluser where email = '$email' ";
-        $query = mysqli_query($conn, $emailSql);
-        $emailcount = mysqli_num_rows($query);
-
-        if ($emailcount <= 0) {
-            $showerror = " Email doesn't exists";
+    if ($email) {
+        $new_pass = $hash;
+        $query = mysqli_query($conn, "UPDATE tbluser SET password='$new_pass' WHERE email='$email'");
+        if ($query) {
+            $passupdated = "Your Password is updated successfully!";
         } else {
-            $email = $_POST['email'];
-            $_SESSION['email'] = $email;
-            $otp = rand(100000, 999999);
-
-            $mail = new PHPMailer(true);
-
-            try {
-
-                //Server settings
-
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = '20bmiit031@gmail.com';
-                $mail->Password   = 'lylfgrmkalgjtjae';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port       = 465;
-
-
-
-                //Recipients
-                $mail->setFrom('20bmiit031@gmail.com', 'Reset Password for Patel\'s Dryfruit And Masala');
-                $mail->addAddress($email);     //Add a recipient
-
-                $mail->isHTML(true);
-                //$msg=file_get_contents("beefree-wbrjvkqo22s.php");
-
-                $mail->Subject = 'Reset Password!';
-
-                $mail->Body    = "<b>Dear User</b>
-                    <h3>We received a request to reset your password.</h3>
-                    <p>Kindly click the below link to reset your password</p>
-                    http://localhost/dsms/updatepassword.php
-                    <br><br>
-                    <p>With regrads,</p>
-                    <b>Patel's Dryfruit And Masala</b>";
-
-                $mail->MsgHTML = ('h');
-
-
-
-                if (!$mail->send()) {
-?>
-                    <script>
-                        alert("<?php echo " Invalid Email " ?>");
-                    </script>
-<?php
-                } else {
-                    $mailsent = "Reset mail had sent to your email address! Kindly Check it!";
-                }
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
+            $passerr = "Please Try Again!";
         }
+    } else {
+        $passerr = "Please Try Again!";
     }
 }
-
-
 
 
 ?>
