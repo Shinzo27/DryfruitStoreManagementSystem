@@ -4,10 +4,9 @@ session_start();
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
    $loggedin = true;
-} else {
-   $loggedin = false;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

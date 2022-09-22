@@ -1,5 +1,9 @@
 <?php
 include 'partials\datacon.php';
+$loggedin = false;
+if (isset($_SESSION['loggedin'])) {
+    $loggedin = true;
+}
 
 ?>
 
