@@ -91,15 +91,15 @@ if (isset($_SESSION['loggedin'])) {
                     $mail->isSMTP();
                     $mail->Host       = 'smtp.gmail.com';
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = '20bmiit031@gmail.com';
-                    $mail->Password   = 'lylfgrmkalgjtjae';
+                    $mail->Username   = 'pateldryfruit55@gmail.com';
+                    $mail->Password   = 'tynfuhtpugepkiku';
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port       = 465;
 
 
 
                     //Recipients
-                    $mail->setFrom('20bmiit031@gmail.com', 'Patel\'s Dryfruit And Masala');
+                    $mail->setFrom('pateldryfruit55@gmail.com', 'Patel\'s Dryfruit And Masala');
                     $mail->addAddress($email);     //Add a recipient
 
                     $mail->isHTML(true);
