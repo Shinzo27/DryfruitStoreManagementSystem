@@ -1,10 +1,16 @@
 <?php
+session_start();
 include 'partials\datacon.php';
 $loggedin = false;
+$updated_password = false;
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
 }
 
+if (isset($_SESSION['updated_password']))
+{
+    $updated_password = true;
+}
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +56,7 @@ if (isset($_SESSION['loggedin'])) {
 
     <?php
     $loggedin = false;
+    $notselected = false;
     if (isset($_SESSION['loggedin'])) {
         $loggedin = true;
     }
@@ -59,10 +66,8 @@ if (isset($_SESSION['loggedin'])) {
         $password = $_POST['password'];
         $login = false;
         $notexist = false;
-        $notselected = false;
-        if ($_POST['role'] != "customer" || $_POST['role'] != "admin") {
-            $notselected = "Select the role first!";
-        } else if ($_POST['role'] == "customer") {
+
+        if ($_POST['role'] == "customer") {
             $sql = "select * from tbluser where email='$email' and role='customer'";
             $result = mysqli_query($conn, $sql);
             $num = mysqli_num_rows($result);
@@ -117,9 +122,9 @@ if (isset($_SESSION['loggedin'])) {
             }
         }
     }
-    if ($notselected) {
-        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error!</strong> ' . $notselected . '
+    if ($updated_password) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Error!</strong>"Your password is updated successfully!"
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
     }

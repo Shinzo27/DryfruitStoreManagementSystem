@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'partials\datacon.php';
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
@@ -151,11 +152,9 @@ if (isset($_POST['submit'])) {
 
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $showerror = " Invalid Email-Id";
     } else {
-
         $emailSql = "SELECT * FROM tbluser where email = '$email' ";
         $query = mysqli_query($conn, $emailSql);
         $emailcount = mysqli_num_rows($query);
@@ -163,12 +162,10 @@ if (isset($_POST['submit'])) {
         if ($emailcount <= 0) {
             $showerror = " Email doesn't exists";
         } else {
-            $email = $_POST['email'];
+
             $_SESSION['email'] = $email;
             $otp = rand(100000, 999999);
-
             $mail = new PHPMailer(true);
-
             try {
 
                 //Server settings
@@ -195,7 +192,7 @@ if (isset($_POST['submit'])) {
                 $mail->Body    = "<b>Dear User</b>
                     <h3>We received a request to reset your password.</h3>
                     <p>Kindly click the below link to reset your password</p>
-                    http://localhost/dsms/updatepassword.php
+                    http://localhost/dryfruitstoremanagement/updatepassword.php
                     <br><br>
                     <p>With regrads,</p>
                     <b>Patel's Dryfruit And Masala</b>";

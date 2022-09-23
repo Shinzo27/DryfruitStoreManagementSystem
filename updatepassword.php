@@ -1,9 +1,15 @@
 <?php
-
+session_start();
 include 'partials\datacon.php';
 $loggedin = false;
+$emailverify = false;
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
+}
+
+if (isset($_SESSION['email']))
+{
+    $emailverify =true;
 }
 
 ?>
@@ -48,14 +54,39 @@ if (isset($_SESSION['loggedin'])) {
 </head>
 
 <body>
-    <?php
-    $passupdated = false;
-    $passerr = false;
+
+<?php
+$passupdated = false;
+$passerr = false;
+
+if (isset($_POST["submit"])) {
+    include('partials\datacon.php');
+    $psw = $_POST["password"];
+
+    $email = $_SESSION['email'];
+
+    $hash = password_hash($psw, PASSWORD_DEFAULT);
+
+    if ($email) {
+        $new_pass = $hash;
+        $query = mysqli_query($conn, "UPDATE tbluser SET password='$new_pass' WHERE email='$email'");
+        if ($query) {
+            $passupdated = "Your Password is updated successfully!";
+        } else {
+            $passerr = "Please Try Again!";
+        }
+    } else {
+        $passerr = "Please Try Again!";
+    }
+}
+
     if ($passupdated) {
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success</strong> ' . $passupdated . '
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>';
+                $_SESSION['updated_password'] = true;
+                header("location: Signin.php");
     }
 
     if ($passerr) {
@@ -64,7 +95,8 @@ if (isset($_SESSION['loggedin'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
     }
-    ?>
+
+?>
     <section class="header">
 
         <img src="images\logo.png" class="logo">
@@ -141,34 +173,3 @@ if (isset($_SESSION['loggedin'])) {
 
 </html>
 
-<?php
-$passerr = false;
-$passupdated = false;
-if (isset($_POST["submit"])) {
-    include('partials\datacon.php');
-    $psw = $_POST["password"];
-
-    session_start();
-    $email = $_SESSION['email'];
-
-    $hash = password_hash($psw, PASSWORD_DEFAULT);
-
-    $sql = mysqli_query($conn, "SELECT * FROM tbluser WHERE email='$email'");
-    $query = mysqli_num_rows($sql);
-    $fetch = mysqli_fetch_assoc($sql);
-
-    if ($email) {
-        $new_pass = $hash;
-        $query = mysqli_query($conn, "UPDATE tbluser SET password='$new_pass' WHERE email='$email'");
-        if ($query) {
-            $passupdated = "Your Password is updated successfully!";
-        } else {
-            $passerr = "Please Try Again!";
-        }
-    } else {
-        $passerr = "Please Try Again!";
-    }
-}
-
-
-?>
