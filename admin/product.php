@@ -20,79 +20,7 @@ include 'datacon.php';
 </head>
 
 <body>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="post">
-                        Product Name : <input type=text name="pname" placeholder="Enter Product Name"><br><br>
-                        Category : <select name="category" class="btn btn-primary btn-sm dropdown-toggle">
-                            <option value="dryfruit">Dryfruit</option>
-                            <option value="driedfruit">Driedfruit</option>
-                            <option value="masala">Masala</option>
-                            <option value="colddrink">Cold Drink</option>
-                        </select><br><br>
-                        Product Image : <input type=text name="image" placeholder="Enter Product Image"><br><br>
-                        Product Price : <input type=text name="price" placeholder="Enter Product Price"><br><br>
-                        Status : <select name="status" class="btn btn-primary btn-sm dropdown-toggle">
-                            <option value="activate">Activate</option>
-                            <option value="deactivate">Deactivate</option>
-                        </select><br><br>
-                        Date : <input type="date" name="date">
-
-
-                        <div class="modal-footer">
-                            <br>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="modal fade" id="updateproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="post">
-                        Product Name : <input type=text name="pname" placeholder="Enter Product Name"><br><br>
-                        Category : <select name="category" class="btn btn-primary btn-sm dropdown-toggle">
-                            <option value="dryfruit">Dryfruit</option>
-                            <option value="driedfruit">Driedfruit</option>
-                            <option value="masala">Masala</option>
-                            <option value="colddrink">Cold Drink</option>
-                        </select><br><br>
-                        Product Image : <input type=text name="image" placeholder="Enter Product Image"><br><br>
-                        Product Price : <input type=text name="price" placeholder="Enter Product Price"><br><br>
-                        Status : <select name="status" class="btn btn-primary btn-sm dropdown-toggle">
-                            <option value="activate">Activate</option>
-                            <option value="deactivate">Deactivate</option>
-                        </select><br><br>
-                        Date : <input type="date" name="date">
-
-
-                        <div class="modal-footer">
-                            <br>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+    
     <!-- top navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
@@ -177,9 +105,8 @@ include 'datacon.php';
             <div class="row">
                 <div class="col-md-12">
                     <h4>Products
-                        <a href="" class="btn btn-primary float-right" style="float:right;" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product</a>
+                        <a href="addproduct.php" class="btn btn-primary float-right" style="float:right;">Add Product</a>
                     </h4>
-
                 </div>
 
             </div>
@@ -243,6 +170,11 @@ include 'datacon.php';
     <script src="./js/jquery.dataTables.min.js"></script>
     <script src="./js/dataTables.bootstrap5.min.js"></script>
     <script src="./js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+ 
 </body>
 
 </html>
