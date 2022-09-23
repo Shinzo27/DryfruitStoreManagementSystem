@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2022 at 08:49 PM
+-- Generation Time: Sep 23, 2022 at 08:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -43,10 +43,7 @@ CREATE TABLE `tblproduct` (
 --
 
 INSERT INTO `tblproduct` (`pid`, `pname`, `category`, `pimage`, `price`, `status`, `delete_flag`, `date`) VALUES
-(1, 'Cashew', 'dryfruit', 'images\\product1.jpg', 650.00, 'instock', 0, '2022-09-18'),
-(2, 'Almond', 'dryfruit', 'images\\product2.png', 750.00, 'instock', 0, '2022-09-18'),
-(3, 'Dried Strawberry', 'driedfruit', 'images\\driedfruit1.jpg', 520.00, 'instock', 0, '2022-09-18'),
-(4, 'Dried Kiwi', 'driedfruit', 'images\\driedfruit2.jpg', 520.00, 'instock', 0, '2022-09-18');
+(1, 'Cashew', 'dryfruit', 'admin/images/632de5e5c792f.jpg', 650.00, 'activate', 0, '2022-09-23');
 
 -- --------------------------------------------------------
 
@@ -102,7 +99,7 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tblproduct`
 --
 ALTER TABLE `tblproduct`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbluser`

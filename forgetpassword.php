@@ -192,7 +192,7 @@ if (isset($_POST['submit'])) {
                 $mail->Body    = "<b>Dear User</b>
                     <h3>We received a request to reset your password.</h3>
                     <p>Kindly click the below link to reset your password</p>
-                    http://localhost/dryfruitstoremanagement/updatepassword.php
+                    http://localhost/dsms/updatepassword.php
                     <br><br>
                     <p>With regrads,</p>
                     <b>Patel's Dryfruit And Masala</b>";

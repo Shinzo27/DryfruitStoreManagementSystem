@@ -142,7 +142,7 @@ if (isset($_SESSION['loggedin'])) {
                            <a href="order.php" class="btn">Buy now</a><br>
                            <a href="cart.php" class="btn">Add to cart</a>
                         </div>
-                        <div class="img"><img src="<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;">
+                        <div class="img"><img src="<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
                         </div>
                         <div class="price">₹<?php echo $row['price']; ?>/kg</div>
                      </div>

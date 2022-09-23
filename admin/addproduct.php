@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include 'datacon.php';
@@ -6,7 +5,10 @@ $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
 }
+$success = "";
+$error = "";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -19,7 +21,7 @@ if (isset($_SESSION['loggedin'])) {
     <title>Patel's Dryfruit and Masala</title>
 
     <!-- font awesome cdn link  -->
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/addproduct.css" type="text/css" media="all" />
@@ -49,95 +51,21 @@ if (isset($_SESSION['loggedin'])) {
 
 <body>
 
-<?php
-    $error = false;
-    $success = false;
-    if(isset($_POST['addproduct']))
-    {
-        $name= $_POST['pname'];
-        $category = $_POST['category'];
-        $price = $_POST['price'];
-        $status = $_POST['status'];
-        $filename = $_FILES["file"]["name"];
-        $tempname = $_FILES["file"]["tmp_name"];
-        $fsize = $_FILES["file"]["size"];
-        $extension = explode('.', $filename);
-        $extension = strtolower(end($extension));
-
-        $folder = "./image/" . $filename;
-        
-        if ($extension == 'jpg' || $extension == 'png' || $extension == 'gif') {
-            if ($fsize >= 1000000) {
-                $error = '<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Max Image Size is 1024kb!</strong> Try different Image.</div>';
-            } else {
-                $query = "INSERT INTO `tblproduct`(`pname`, `category`, `pimage`, `price`, `status`, `delete_flag`, `date`) VALUES ('$name','$category','$filename','$price','$status','0',current_time()";
-                $run = mysqli_query($conn,$query);
-                if($run)
-                {
-                    $move = move_uploaded_file($temp, $store);
-                    if($move)
-                    {
-                        $success = true;
-                    }
-                }
-            }
-        } elseif ($extension == '') {
-            $error = '<div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>select image</strong></div>';
-        } else {
-            $error = '<div class="alert alert-danger alert-dismissible fade show">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>invalid extension!</strong>png, jpg, Gif are accepted.</div>';
-        }
-
+    <?php
+    if ($success == true) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> ' . $success . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
     }
-    if($success){
-        echo '<div class="alert alert-success alert-dismissible fade show">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                Product Added Successfully.</div>';
+
+    if ($error == true) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> ' . $error . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
     }
-    if($error)
-    {
-        echo $error;
-    }
-?>
-
-    <section class="header">
-
-        <img src="images\logo.png" class="logo">
-
-        <nav class="navbar">
-            <a href="index.php">home</a>
-            <a href="Product.php">shop</a>
-            <a href="gallery.php">gallery</a>
-            <a href="index.php#about">about</a>
-            <a href="index.php#food">expertise</a>
-            <a href="index.php#blogs">reviews</a>
-            <a href="index.php#footer">Contact us</a>
-            <?php
-            if ($loggedin == true) {
-            ?>
-                <a href="profile.php"><?php echo ($_SESSION['loguname']); ?></a>;
-            <?php
-            } else {
-            ?>
-                <a href="Signin.php">Login</a>;
-            <?php
-            }
-            ?>
-            <a href="cart.php">Cart</a>
-            <?php
-            if ($loggedin == true) { ?>
-                <a href="logout.php">Log out</a>
-            <?php }
-            ?>
-        </nav>
-
-        <div id="menu-btn" class="fas fa-bars"></div>
-
-    </section>
+    ?>
 
     <!-- form section start -->
     <section class="w3l-mockup-form">
@@ -154,7 +82,7 @@ if (isset($_SESSION['loggedin'])) {
                         <h2>Login Now</h2>
                         <p>Welcome to our store where you can get everything fresh with fresh vibes!</p>
 
-                        <form action="" method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <input type="text" name="pname" class="name" placeholder="Enter Product Name" required>
                             <select style="width: 90px; height: 30px; text-align: center; background-color: #7d2ae8; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="category">
                                 <option hidden>Category</option>
@@ -164,7 +92,7 @@ if (isset($_SESSION['loggedin'])) {
                                 <option value="masala">Masala</option>
                                 <option value="colddrink">Cold Drink</option>
                             </select><label style="color: #666; padding-left: 10px; font-size: 15px;">Select Category!</label><br><br>
-                            <input type="file" name="file" required>
+                            <input type="file" id="file" name="file" multiple />
                             <input type="text" name="price" class="name" placeholder="Enter Product Price" required>
                             <select style="width: 90px; height: 30px; text-align: center; background-color: #7d2ae8; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="status">
                                 <option hidden>Status</option>
@@ -196,3 +124,41 @@ if (isset($_SESSION['loggedin'])) {
 
 </html>
 
+<?php
+
+if (isset($_POST['addproduct'])) {
+    if (isset($_FILES['file'])) {
+        $pname = $_POST['pname'];
+        $category = $_POST['category'];
+        $price = $_POST['price'];
+        $status = $_POST['status'];
+
+        $fname = $_FILES['file']['name'];
+        $fsize = $_FILES['file']['size'];
+        $extension = explode('.', $fname);
+        $extension = strtolower(end($extension));
+
+        $store = "admin/images/" . basename($fnew);
+
+        if ($extension == 'jpg' || $extension == 'png' || $extension == 'gif') {
+            if ($fsize >= 2000000) {
+                $error = '<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Max Image Size is 1024kb!</strong> Try different Image.</div>';
+            } else {
+                move_uploaded_file($temp, $store);
+                $sql = "INSERT INTO `tblproduct`(`pname`, `category`, `pimage`, `price`, `status`, `delete_flag`, `date`) VALUES ('$pname','$category','$store','$price','$status',0,current_time())";
+                $result = mysqli_query($conn, $sql);
+                move_uploaded_file($fna, $store);
+                if ($result) {
+                    $success = "Image Added Successfully!";
+                }
+            }
+        } elseif ($extension == '') {
+            $error = "Select Image Only!";
+        } else {
+            $error = "Select File under 2 MB!";
+        }
+    }
+}
+
+?>
