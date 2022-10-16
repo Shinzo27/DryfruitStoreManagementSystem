@@ -1,14 +1,17 @@
 <?php
+include 'partials\datacon.php';
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
     header("location: Signin.php");
 }
 $loggedin = false;
+
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
 }
 
+$uid = $_SESSION['uid'];
 
 ?>
 
@@ -21,6 +24,9 @@ if (isset($_SESSION['loggedin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patel's Dryfruit and Masala</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <!-- CSS only -->
     <!-- font awesome cdn link  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -79,61 +85,45 @@ if (isset($_SESSION['loggedin'])) {
                 <h3 class="Heading">Shopping Cart</h3>
                 <h5 class="Action">Remove all</h5>
             </div>
-
-            <div class="Cart-Items">
-                <div class="image-box">
-                    <img src="images/product1.jpg" style="height:120px;">
-                </div>
-                <div class="about">
-                    <h1 class="title">Cashew</h1>
-                    <h3 class="subtitle">250gm</h3>
-                </div>
-                <div class="counter">
-                    <div class="btn">+</div>
-                    <div class="count">2</div>
-                    <div class="btn">-</div>
-                </div>
-                <div class="prices">
-                    <div class="amount">₹188</div>
-                    <div class="save"><u>Save for later</u></div>
-                    <div class="remove"><u>Remove</u></div>
-                </div>
-            </div>
-
-            <div class="Cart-Items pad">
-                <div class="image-box">
-                    <img src="images/product2.png" style="height:120px;">
-                </div>
-                <div class="about">
-                    <h1 class="title">Almond</h1>
-                    <h3 class="subtitle">250gm</h3>
-                </div>
-                <div class="counter">
-                    <div class="btn">+</div>
-                    <div class="count">1</div>
-                    <div class="btn">-</div>
-                </div>
-                <div class="prices">
-                    <div class="amount">₹162</div>
-                    <div class="save"><u>Save for later</u></div>
-                    <div class="remove"><u>Remove</u></div>
-                </div>
-            </div>
+            <?php
+            $grnd_total = 0;
+            $select_cart = mysqli_query($conn, "SELECT * FROM `tblcart` WHERE uid = '$uid'") or die('query failed');
+            if (mysqli_num_rows($select_cart) > 0) {
+                while ($rows = mysqli_fetch_assoc($select_cart)) {
+            ?>
+                    <div class="Cart-Items">
+                        <div class="about">
+                            <h1 class="title" style="font-size:28px;"><?php echo $rows['pname']; ?></h1>
+                            <h3 class="subtitle" style="font-size:20px;">₹ <?php echo $rows['price']; ?></h3><br>
+                            <input type="number" size="8" placeholder="quantity" value="<?php echo $rows['quantity']; ?>" min="1" name="quantity" style="padding-left: 10px; height: 30px; font-size: 18px; background-color:skyblue;" required><br><br>
+                            <button type="button" style="background-color:blueviolet; height: 30px; width:55px; color:white; font-size: 15px; text-align:center;">Update</button>
+                        </div>
+                        <div class="prices">
+                            <div class="amount">₹ <?php echo $sub_total = ($rows['quantity'] * $rows['price']); ?></div>
+                            <div><button type="button" style="background-color:blueviolet; height: 30px; width:55px; color:white; font-size: 15px; text-align:center;">Remove</button></div>
+                        </div>
+                    </div>
+            <?php
+                    $grnd_total += $sub_total;
+                }
+            }
+            ?>
             <hr>
             <div class="checkout">
                 <div class="total">
                     <div>
                         <div class="Subtotal">Sub-Total</div>
-                        <div class="items">2 items</div>
                     </div>
-                    <div class="total-amount">₹350</div>
+                    <div class="total-amount">₹ <?php echo $grnd_total; ?></div>
                 </div>
-                <a href="payment.php">
+                <a href="order.php">
                     <button class="button">Checkout</button>
                 </a>
             </div>
         </div>
     </section>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 
 </html>

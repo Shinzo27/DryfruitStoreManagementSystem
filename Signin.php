@@ -77,6 +77,7 @@ if (isset($_SESSION['updated_password'])) {
                     if (password_verify($password, $row['password'])) {
                         $login = true;
                         $loguname = $row['username'];
+                        $userid = $row['uid'];
                     }
                 }
             } else {
@@ -86,6 +87,7 @@ if (isset($_SESSION['updated_password'])) {
                 session_start();
                 $_SESSION['loggedin'] = true;
                 $_SESSION['loguname'] = $loguname;
+                $_SESSION['uid'] = $userid;
                 header("location: index.php");
             }
             if ($notexist) {

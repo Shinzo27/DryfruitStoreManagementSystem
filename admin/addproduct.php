@@ -121,6 +121,7 @@ if (isset($_POST['addproduct'])) {
         $category = $_POST['category'];
         $price = $_POST['price'];
         $status = $_POST['status'];
+        $stock = $_POST['stock'];
 
         $fname = $_FILES['file']['name'];
         $temp = $_FILES['file']['tmp_name'];
@@ -137,7 +138,7 @@ if (isset($_POST['addproduct'])) {
                 <strong>Max Image Size is 1024kb!</strong> Try different Image.</div>';
             } else {
                 move_uploaded_file($temp, $store);
-                $sql = "INSERT INTO `tblproduct`(`pname`, `category`, `pimage`, `price`, `status`, `delete_flag`, `date`) VALUES ('$pname','$category','$store','$price','$status',0,current_time())";
+                $sql = "INSERT INTO `tblproduct`(`pname`, `category`, `pimage`, `price`,`stock`, `status`, `date`) VALUES ('$pname','$category','$store','$price','$stock','$status',current_time())";
                 $result = mysqli_query($conn, $sql);
                 // move_uploaded_file($fname, "admin/images/");
                 if ($result) {
