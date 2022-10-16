@@ -5,6 +5,7 @@ $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
    $loggedin = true;
 }
+
 ?>
 
 
@@ -103,7 +104,7 @@ if (isset($_SESSION['loggedin'])) {
                            <a href="order.php" class="btn">Buy now</a><br>
                            <a href="cart.php" class="btn">Add to cart</a>
                         </div>
-                        <div class="img"><img src="<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;">
+                        <div class="img"><img src="admin/<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;">
                         </div>
                         <div class="price">₹<?php echo $row['price']; ?>/kg</div>
                      </div>
@@ -142,7 +143,123 @@ if (isset($_SESSION['loggedin'])) {
                            <a href="order.php" class="btn">Buy now</a><br>
                            <a href="cart.php" class="btn">Add to cart</a>
                         </div>
-                        <div class="img"><img src="<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
+                        <div class="img"><img src="admin/<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
+                        </div>
+                        <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                     </div>
+                  <?php endwhile; ?>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="menu" id="namkeen">
+      <div class="swiper menu-slider">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide slide">
+               <h3 class="title">Namkeen</h3>
+               <div class="box-container">
+                  <?php
+                  include 'partials/datacon.php';
+                  $query = "select * from tblProduct where category='namkeen'";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($result)) :
+                  ?>
+                     <div class="box">
+                        <div class="info">
+                           <h3><?php echo $row['pname']; ?></h3>
+                           <br>
+                           <form method="post">
+                              <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
+                              <select name="weight" style="width: 70px; height: 28px;">
+                                 <option value="500gm">500gm</option>
+                                 <option value="1kg">1kg</option>
+                              </select>
+                           </form>
+                           <br>
+                           <a href="order.php" class="btn">Buy now</a><br>
+                           <a href="cart.php" class="btn">Add to cart</a>
+                        </div>
+                        <div class="img"><img src="admin/<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
+                        </div>
+                        <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                     </div>
+                  <?php endwhile; ?>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="menu" id="Masala">
+      <div class="swiper menu-slider">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide slide">
+               <h3 class="title">Masala</h3>
+               <div class="box-container">
+                  <?php
+                  include 'partials/datacon.php';
+                  $query = "select * from tblProduct where category='masala'";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($result)) :
+                  ?>
+                     <div class="box">
+                        <div class="info">
+                           <h3><?php echo $row['pname']; ?></h3>
+                           <br>
+                           <form method="post">
+                              <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
+                              <select name="weight" style="width: 70px; height: 28px;">
+                                 <option value="500gm">500gm</option>
+                                 <option value="1kg">1kg</option>
+                              </select>
+                           </form>
+                           <br>
+                           <a href="order.php" class="btn">Buy now</a><br>
+                           <a href="cart.php" class="btn">Add to cart</a>
+                        </div>
+                        <div class="img"><img src="admin/<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
+                        </div>
+                        <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                     </div>
+                  <?php endwhile; ?>
+
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <section class="menu" id="colddrink">
+      <div class="swiper menu-slider">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide slide">
+               <h3 class="title">Cold Drink</h3>
+               <div class="box-container">
+                  <?php
+                  include 'partials/datacon.php';
+                  $query = "select * from tblProduct where category='colddrink'";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_assoc($result)) :
+                  ?>
+                     <div class="box">
+                        <div class="info">
+                           <h3><?php echo $row['pname']; ?></h3>
+                           <br>
+                           <form method="post">
+                              <input type="text" size="8" placeholder="quantity" style="height: 50px; font-size: 18px;">
+                              <select name="weight" style="width: 70px; height: 28px;">
+                                 <option value="500gm">500gm</option>
+                                 <option value="1kg">1kg</option>
+                              </select>
+                           </form>
+                           <br>
+                           <a href="order.php" class="btn">Buy now</a><br>
+                           <a href="cart.php" class="btn">Add to cart</a>
+                        </div>
+                        <div class="img"><img src="admin/<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
                         </div>
                         <div class="price">₹<?php echo $row['price']; ?>/kg</div>
                      </div>

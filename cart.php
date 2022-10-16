@@ -2,12 +2,14 @@
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
-    header("location: login.php");
+    header("location: Signin.php");
 }
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
 }
+
+
 ?>
 
 <!DOCTYPE html>

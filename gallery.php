@@ -7,6 +7,8 @@ if (isset($_SESSION['loggedin'])) {
 } else {
    $loggedin = false;
 }
+
+
 ?>
 
 <!DOCTYPE html>

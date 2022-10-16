@@ -177,7 +177,7 @@ button:hover {
     padding: 0px;
     flex-basis: 50%;
     -webkit-flex-basis: 50%;
-    background: #4169E1;
+    background: #4169e1;
     padding: 100px 50px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -254,7 +254,7 @@ button:hover {
     outline: none;
     margin-bottom: 15px;
     font-size: 16px;
-    color: #0047AB;
+    color: #4169e1;
     text-align: left;
     padding: 14px 20px;
     width: 100%;

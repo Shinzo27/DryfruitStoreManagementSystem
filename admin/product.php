@@ -46,11 +46,8 @@ include 'datacon.php';
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
+                            <li><a class="dropdown-item" href="#">Manage Account</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -78,10 +75,6 @@ include 'datacon.php';
                         <a href="product.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                             <span>Product</span>
-                        </a>
-                        <a href="stock.php" class="nav-link px-3 active">
-                            <span class="me-2"><i class="bi bi-table"></i></span>
-                            <span>Stock</span>
                         </a>
                         <a href="sales.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-chevron-right"></i></span>
@@ -115,7 +108,7 @@ include 'datacon.php';
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Total Sales
+                            <span><i class="bi bi-table me-2"></i></span> Products
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -133,7 +126,7 @@ include 'datacon.php';
                                     <tbody>
                                         <?php
 
-                                        $query = "SELECT * FROM `tblproduct`";
+                                        $query = "SELECT * FROM tblproduct";
                                         $data = mysqli_query($conn, $query);
                                         $result = mysqli_fetch_row($data);
 
@@ -147,7 +140,7 @@ include 'datacon.php';
                                                     <td><?php echo $rows['price']; ?></td>
                                                     <td><?php echo $rows['status']; ?></td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateproduct">Edit</a>
+                                                        <a class="btn btn-primary btn-sm" href="updateproduct.php?id=<?php echo $rows['pid']; ?>">Edit</a>
                                                         <a class="btn btn-primary btn-sm" onclick="return confirm('are you sure you want to delete?')" href="deleteproduct.php?id=<?php echo $rows['pid']; ?>">Delete</a>
                                                     </td>
                                                 </tr>

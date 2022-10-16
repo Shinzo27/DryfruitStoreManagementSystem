@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) {
+    header("location: login.php");
+}
+
+include 'datacon.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +19,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="css/dataTables.bootstrap5.min.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Patel's Dryfruit And Masala</title>
     <link rel="shortcut icon" type="x-icon" href="images\logo.png">
+    <title>Patel's Dryfruit And Masala</title>
+
 </head>
 
 <body>
@@ -39,11 +50,8 @@
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
+                            <li><a class="dropdown-item" href="#">Manage Account</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -72,10 +80,6 @@
                             <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                             <span>Product</span>
                         </a>
-                        <a href="stock.php" class="nav-link px-3 active">
-                            <span class="me-2"><i class="bi bi-table"></i></span>
-                            <span>Stock</span>
-                        </a>
                         <a href="sales.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-chevron-right"></i></span>
                             <span>Sales</span>
@@ -97,9 +101,58 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Manage Admins</h4>
+                    <h4>Manage Admins
+                        <a href="addadmin.php" class="btn btn-primary float-right" style="float:right;">Add Admin</a>
+                    </h4>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <div class="card">
+                    <div class="card-header">
+                        <span><i class="bi bi-table me-2"></i></span> Admins
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="table table-striped data-table" style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                    $query = "SELECT * FROM tbluser where role='admin'";
+                                    $data = mysqli_query($conn, $query);
+                                    $result = mysqli_fetch_row($data);
+
+                                    if ($result) {
+                                        while ($rows = mysqli_fetch_assoc($data)) {
+                                    ?>
+                                            <tr>
+                                                <td><?php echo $rows['username']; ?></td>
+                                                <td><?php echo $rows['email']; ?></td>
+                                                <td><?php echo $rows['date']; ?></td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#updateproduct">Edit</a>
+                                                    <a class="btn btn-primary btn-sm" onclick="return confirm('are you sure you want to delete?')" href="deleteproduct.php?id=<?php echo $rows['uid']; ?>">Delete</a>
+                                                </td>
+                                            </tr>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     </main>
     <script src="./js/bootstrap.bundle.min.js"></script>

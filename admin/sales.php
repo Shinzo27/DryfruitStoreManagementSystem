@@ -39,11 +39,8 @@
                             <i class="bi bi-person-fill"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
+                            <li><a class="dropdown-item" href="#">Manage Account</a></li>
+                            <li><a class="dropdown-item" href="logout.php">Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -71,10 +68,6 @@
                         <a href="product.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
                             <span>Product</span>
-                        </a>
-                        <a href="stock.php" class="nav-link px-3 active">
-                            <span class="me-2"><i class="bi bi-table"></i></span>
-                            <span>Stock</span>
                         </a>
                         <a href="sales.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-chevron-right"></i></span>

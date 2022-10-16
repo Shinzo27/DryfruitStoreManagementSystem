@@ -1,14 +1,54 @@
 <?php
 session_start();
-ob_start();
 include 'datacon.php';
-$loggedin = false;
-if (isset($_SESSION['loggedin'])) {
-    $loggedin = true;
-}
-$success = "";
-$error = "";
+
+$id = $_GET['id'];
+$select = "select * from tblproduct where pid='$id'";
+$data = mysqli_query($conn, $select);
+$row = mysqli_fetch_assoc($data);
+
 ?>
+
+<?php
+
+if (isset($_POST['updateproduct'])) {
+    $pname = $_POST['pname'];
+    $category = $_POST['category'];
+    $price = $_POST['price'];
+    $status = $_POST['status'];
+
+    $fname = $_FILES['file']['name'];
+    $temp = $_FILES['file']['tmp_name'];
+    $fsize = $_FILES['file']['size'];
+    $extension = explode('.', $fname);
+    $extension = strtolower(end($extension));
+    $fnew = uniqid() . '.' . $extension;
+
+    $store = "images/" . basename($fnew);
+
+    if ($extension == 'jpg' || $extension == 'png' || $extension == 'gif') {
+        if ($fsize >= 2000000) {
+            $error = '<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Max Image Size is 1024kb!</strong> Try different Image.</div>';
+        } else {
+            $sql = "update tblproduct set pname='$pname',category='$category',pimage='$store',price='$price',status='$status' where pid='$id'";
+            $result = mysqli_query($conn, $sql);
+            move_uploaded_file($temp, $store);
+            if ($result) {
+                echo '<script>
+                        window.location.href = "product.php";
+                    </script>';
+            }
+        }
+    } elseif ($extension == '') {
+        $error = "Select Image Only!";
+    } else {
+        $error = "Select File under 2 MB!";
+    }
+}
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -52,7 +92,15 @@ $error = "";
 
 <body>
 
-
+    <?php
+    $error = false;
+    if ($error == true) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> ' . $error . '
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+    }
+    ?>
 
     <!-- form section start -->
     <section class="w3l-mockup-form">
@@ -66,11 +114,11 @@ $error = "";
                         </div>
                     </div>
                     <div class="content-wthree">
-                        <h2>Add Product</h2>
+                        <h2>Update Product</h2>
                         <p>Fill all the details properly!</p>
 
                         <form method="post" enctype="multipart/form-data">
-                            <input type="text" name="pname" class="name" placeholder="Enter Product Name" required>
+                            <input type="text" name="pname" class="name" placeholder="Enter Product Name" value="<?php echo $row['pname'] ?>" required>
                             <select style="width: 90px; height: 30px; text-align: center; background-color: #4169e1; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="category">
                                 <option hidden>Category</option>
                                 <option value="dryfruit">Dryfruit</option>
@@ -79,16 +127,14 @@ $error = "";
                                 <option value="masala">Masala</option>
                                 <option value="colddrink">Cold Drink</option>
                             </select><label style="color: #666; padding-left: 10px; font-size: 15px;">Select Category!</label><br><br>
-                            <input type="file" id="file" name="file" multiple />
-                            <input type="text" name="price" class="name" placeholder="Enter Product Price" required>
-                            <input type="text" name="stock" class="name" placeholder="Enter Opening Stock" required>
-                            <label style="color: #666; padding-left: 10px; font-size: 15px;">Enter Stock in Kg or Packets!</label><br><br>
+                            <input type="file" id="file" name="file" value="$row['pimage']" multiple />
+                            <input type="text" name="price" class="name" value="<?php echo $row['price'] ?>" placeholder="Enter Product Price" required>
                             <select style="width: 90px; height: 30px; text-align: center; background-color: #4169e1; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="status">
                                 <option hidden>Status</option>
                                 <option value="activate">Activate</option>
                                 <option value="deactivate">Deactivate</option>
                             </select><label style="color: #666; padding-left: 10px; font-size: 15px;">Select if product is active or not!</label><br><br>
-                            <button name="addproduct" class="btn" type="submit">Login</button>
+                            <button name="updateproduct" class="btn" type="submit">Login</button>
                         </form>
                     </div>
                 </div>
@@ -112,48 +158,3 @@ $error = "";
 </body>
 
 </html>
-
-<?php
-
-if (isset($_POST['addproduct'])) {
-    if (isset($_FILES['file'])) {
-        $pname = $_POST['pname'];
-        $category = $_POST['category'];
-        $price = $_POST['price'];
-        $status = $_POST['status'];
-
-        $fname = $_FILES['file']['name'];
-        $temp = $_FILES['file']['tmp_name'];
-        $fsize = $_FILES['file']['size'];
-        $extension = explode('.', $fname);
-        $extension = strtolower(end($extension));
-        $fnew = uniqid() . '.' . $extension;
-
-        $store = "images/" . basename($fnew);
-
-        if ($extension == 'jpg' || $extension == 'png' || $extension == 'gif') {
-            if ($fsize >= 2000000) {
-                $error = '<div class="alert alert-danger alert-dismissible fade show"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Max Image Size is 1024kb!</strong> Try different Image.</div>';
-            } else {
-                move_uploaded_file($temp, $store);
-                $sql = "INSERT INTO `tblproduct`(`pname`, `category`, `pimage`, `price`, `status`, `delete_flag`, `date`) VALUES ('$pname','$category','$store','$price','$status',0,current_time())";
-                $result = mysqli_query($conn, $sql);
-                // move_uploaded_file($fname, "admin/images/");
-                if ($result) {
-?>
-                    <script>
-                        window.location.href = "product.php";
-                    </script>
-<?php
-
-                } elseif ($extension == '') {
-                    $error = "Select Image Only!";
-                } else {
-                    $error = "Select File under 2 MB!";
-                }
-            }
-        }
-    }
-}
-?>

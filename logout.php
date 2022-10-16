@@ -2,6 +2,8 @@
 session_start();
 session_destroy();
 unset($_SESSION['loggedin']);
-
+if(isset($_SESSION['admin']))
+{
+    unset($_SESSION['admin']);
+}
 header("location:index.php");
-?>
