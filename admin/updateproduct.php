@@ -134,7 +134,7 @@ if (isset($_POST['updateproduct'])) {
                                 <option value="activate">Activate</option>
                                 <option value="deactivate">Deactivate</option>
                             </select><label style="color: #666; padding-left: 10px; font-size: 15px;">Select if product is active or not!</label><br><br>
-                            <button name="updateproduct" class="btn" type="submit">Login</button>
+                            <button name="updateproduct" class="btn" type="submit">Update Product</button>
                         </form>
                     </div>
                 </div>

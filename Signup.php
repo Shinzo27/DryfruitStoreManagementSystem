@@ -204,6 +204,7 @@ if (isset($_SESSION['loggedin'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
+            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>

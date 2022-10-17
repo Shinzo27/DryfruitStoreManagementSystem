@@ -52,8 +52,6 @@ $error = "";
 
 <body>
 
-
-
     <!-- form section start -->
     <section class="w3l-mockup-form">
         <div class="container">
@@ -88,7 +86,7 @@ $error = "";
                                 <option value="activate">Activate</option>
                                 <option value="deactivate">Deactivate</option>
                             </select><label style="color: #666; padding-left: 10px; font-size: 15px;">Select if product is active or not!</label><br><br>
-                            <button name="addproduct" class="btn" type="submit">Login</button>
+                            <button name="addproduct" class="btn" type="submit">Add Product</button>
                         </form>
                     </div>
                 </div>

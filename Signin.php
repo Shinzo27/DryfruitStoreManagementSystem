@@ -163,6 +163,7 @@ if (isset($_SESSION['updated_password'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
+            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>

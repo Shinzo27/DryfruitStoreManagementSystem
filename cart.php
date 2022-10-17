@@ -13,16 +13,16 @@ if (isset($_SESSION['loggedin'])) {
 
 $uid = $_SESSION['uid'];
 $nodata = false;
-if(isset($_GET['delete_all'])){
+if (isset($_GET['delete_all'])) {
     mysqli_query($conn, "DELETE FROM `tblcart` WHERE uid = '$uid'") or die('query failed');
     header('location:cart.php');
 }
 
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     $delete_id = $_GET['delete'];
     mysqli_query($conn, "DELETE FROM `tblcart` WHERE cid = '$delete_id'") or die('query failed');
     header('location:cart.php');
- }
+}
 
 ?>
 
@@ -80,6 +80,7 @@ if(isset($_GET['delete'])){
             }
             ?>
             <a href="cart.php">Cart</a>
+            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>
@@ -88,13 +89,13 @@ if(isset($_GET['delete'])){
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
-        
+
     </section>
     <section class="main">
         <div class="CartContainer">
             <div class="Header">
                 <h3 class="Heading">Shopping Cart</h3>
-                <h5 class="Action"><button type="button" style="background-color:blueviolet; height: 30px; width:95px; color:white; font-size: 15px; text-align:center;"><a href="cart.php?delete_all" style="color:white;" class="delete-btn <?php echo ($grnd_total > 1)?'':'disabled'; ?>" onclick="return confirm('delete all from cart?');">delete all</a></button></h5>
+                <h5 class="Action"><button type="button" style="background-color:blueviolet; height: 30px; width:95px; color:white; font-size: 15px; text-align:center;"><a href="cart.php?delete_all" style="color:white;" class="delete-btn <?php echo ($grnd_total > 1) ? '' : 'disabled'; ?>" onclick="return confirm('delete all from cart?');">delete all</a></button></h5>
             </div>
             <?php
             $grnd_total = 0;
@@ -127,8 +128,8 @@ if(isset($_GET['delete'])){
                     </div>
                     <div class="total-amount">₹ <?php echo $grnd_total; ?></div>
                 </div>
-                    <button class="button">
-                        <a href="checkout.php" style="color: black;" class="check-btn <?php echo ($grnd_total > 1)?'':'disabled'; ?>">proceed to checkout</a></button>
+                <button class="button">
+                    <a href="customerinfo.php" style="color: black;" class="check-btn <?php echo ($grnd_total > 1) ? '' : 'disabled'; ?>">proceed to checkout</a></button>
             </div>
         </div>
     </section>
