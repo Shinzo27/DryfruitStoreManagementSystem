@@ -12,6 +12,17 @@ if (isset($_SESSION['loggedin'])) {
 }
 
 $uid = $_SESSION['uid'];
+$nodata = false;
+if(isset($_GET['delete_all'])){
+    mysqli_query($conn, "DELETE FROM `tblcart` WHERE uid = '$uid'") or die('query failed');
+    header('location:cart.php');
+}
+
+if(isset($_GET['delete'])){
+    $delete_id = $_GET['delete'];
+    mysqli_query($conn, "DELETE FROM `tblcart` WHERE cid = '$delete_id'") or die('query failed');
+    header('location:cart.php');
+ }
 
 ?>
 
@@ -77,13 +88,13 @@ $uid = $_SESSION['uid'];
         </nav>
 
         <div id="menu-btn" class="fas fa-bars"></div>
-
+        
     </section>
     <section class="main">
         <div class="CartContainer">
             <div class="Header">
                 <h3 class="Heading">Shopping Cart</h3>
-                <h5 class="Action">Remove all</h5>
+                <h5 class="Action"><button type="button" style="background-color:blueviolet; height: 30px; width:95px; color:white; font-size: 15px; text-align:center;"><a href="cart.php?delete_all" style="color:white;" class="delete-btn <?php echo ($grnd_total > 1)?'':'disabled'; ?>" onclick="return confirm('delete all from cart?');">delete all</a></button></h5>
             </div>
             <?php
             $grnd_total = 0;
@@ -100,7 +111,7 @@ $uid = $_SESSION['uid'];
                         </div>
                         <div class="prices">
                             <div class="amount">₹ <?php echo $sub_total = ($rows['quantity'] * $rows['price']); ?></div>
-                            <div><button type="button" style="background-color:blueviolet; height: 30px; width:55px; color:white; font-size: 15px; text-align:center;">Remove</button></div>
+                            <div><button type="button" style="background-color:blueviolet; height: 30px; width:55px; color:white; font-size: 15px; text-align:center;"><a href="cart.php?delete=<?php echo $rows['cid']; ?>" style="color:white;" class="fas fa-times" onclick="return confirm('delete this from cart?');"></a></button></div>
                         </div>
                     </div>
             <?php
@@ -116,9 +127,8 @@ $uid = $_SESSION['uid'];
                     </div>
                     <div class="total-amount">₹ <?php echo $grnd_total; ?></div>
                 </div>
-                <a href="order.php">
-                    <button class="button">Checkout</button>
-                </a>
+                    <button class="button">
+                        <a href="checkout.php" style="color: black;" class="check-btn <?php echo ($grnd_total > 1)?'':'disabled'; ?>">proceed to checkout</a></button>
             </div>
         </div>
     </section>
