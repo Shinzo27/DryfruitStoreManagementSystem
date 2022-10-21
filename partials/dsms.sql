@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2022 at 09:22 PM
+-- Generation Time: Oct 21, 2022 at 04:26 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -36,13 +36,31 @@ CREATE TABLE `tblcart` (
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tblcart`
+-- Table structure for table `tblorder`
 --
 
-INSERT INTO `tblcart` (`cid`, `uid`, `pname`, `price`, `quantity`, `date`) VALUES
-(4, 11, 'Cashew', 650, 1, '2022-10-17 00:11:18'),
-(5, 11, 'Dried Pineapple', 520, 1, '2022-10-17 00:11:36');
+CREATE TABLE `tblorder` (
+  `oid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `name` varchar(100) CHARACTER SET armscii8 COLLATE armscii8_bin NOT NULL,
+  `number` varchar(12) NOT NULL,
+  `method` varchar(50) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `total_products` varchar(1000) NOT NULL,
+  `total_price` bigint(100) NOT NULL,
+  `placed_on` varchar(50) NOT NULL,
+  `payment_status` varchar(20) NOT NULL DEFAULT 'pending'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tblorder`
+--
+
+INSERT INTO `tblorder` (`oid`, `uid`, `name`, `number`, `method`, `address`, `total_products`, `total_price`, `placed_on`, `payment_status`) VALUES
+(2, 11, 'Pratham Patel', '7878435553', 'cashondelivery', 'flat no. 193, Nani Fali,Pal Gam, nr. pal prathmik school, Surat , gujarat', ', Cashew (1) ', 650, '17-Oct-2022', 'pending');
 
 -- --------------------------------------------------------
 
@@ -71,7 +89,25 @@ INSERT INTO `tblproduct` (`pid`, `pname`, `category`, `pimage`, `price`, `stock`
 (4, 'Almond', 'dryfruit', 'images/634bfb2d34e20.png', 780.00, 25.00, 'activate', '2022-10-16'),
 (5, 'Bhatha Kani 240gm', 'namkeen', 'images/634bfca223757.png', 40.00, 20.00, 'activate', '2022-10-16'),
 (6, 'Garam Masala', 'masala', 'images/634bfccd8dd8e.jpg', 80.00, 15.00, 'activate', '2022-10-16'),
-(7, 'Coke 750ml', 'colddrink', 'images/634bfcf499c39.jpg', 40.00, 25.00, 'activate', '2022-10-16');
+(7, 'Coke 750ml', 'colddrink', 'images/634d5d32ee159.jpg', 40.00, 25.00, 'activate', '2022-10-16'),
+(8, 'Bhavnagari Gathiya', 'namkeen', 'images/634d5dd63af70.png', 50.00, 20.00, 'activate', '2022-10-17'),
+(9, 'Plain Sev', 'namkeen', 'images/634d5e217876f.png', 40.00, 20.00, 'activate', '2022-10-17'),
+(10, 'Khatta Mitha', 'namkeen', 'images/634d5e40bcfd8.png', 50.00, 15.00, 'activate', '2022-10-17'),
+(11, 'Surti Special', 'namkeen', 'images/634d5e5d173d8.png', 50.00, 20.00, 'activate', '2022-10-17'),
+(12, 'Dried Strawberry', 'driedfruit', 'images/634d5e98b464a.jpg', 600.00, 20.00, 'activate', '2022-10-17'),
+(13, 'Dried Kiwi', 'driedfruit', 'images/634d5ebced25a.jpg', 600.00, 20.00, 'activate', '2022-10-17'),
+(14, 'Dried Orange', 'driedfruit', 'images/634d5ed95125e.jpg', 650.00, 20.00, 'activate', '2022-10-17'),
+(15, 'Pomelo Green', 'driedfruit', 'images/634d5f0152769.jpg', 680.00, 20.00, 'activate', '2022-10-17'),
+(16, 'Mix Driedfruit', 'driedfruit', 'images/634d5f32644df.jpg', 1000.00, 15.00, 'activate', '2022-10-17'),
+(17, 'Mangalori Mix', 'namkeen', 'images/634d5f7aa926f.png', 50.00, 20.00, 'activate', '2022-10-17'),
+(18, 'Chaat Masala', 'masala', 'images/634d606e05ca2.jpg', 30.00, 20.00, 'activate', '2022-10-17'),
+(19, 'Biryani Masala', 'masala', 'images/634d6088644f6.jpg', 50.00, 15.00, 'activate', '2022-10-17'),
+(20, 'Kasmiri Chilli Powder', 'masala', 'images/634d60a80597e.jpg', 90.00, 15.00, 'activate', '2022-10-17'),
+(21, 'Turmeric Powder', 'masala', 'images/634d60cae0eef.jpg', 250.00, 20.00, 'activate', '2022-10-17'),
+(22, 'Kitchen King Masala', 'masala', 'images/634d60e432209.jpg', 50.00, 20.00, 'activate', '2022-10-17'),
+(23, 'Fanta 750ml', 'colddrink', 'images/634d62f6db4f1.jpg', 40.00, 20.00, 'activate', '2022-10-17'),
+(24, 'Nescafe Coffee', 'colddrink', 'images/634d63165dc50.jpg', 40.00, 15.00, 'activate', '2022-10-17'),
+(25, 'RAW Coconut Water', 'colddrink', 'images/634d632e1b421.jpg', 40.00, 20.00, 'activate', '2022-10-17');
 
 -- --------------------------------------------------------
 
@@ -113,6 +149,12 @@ ALTER TABLE `tblcart`
   ADD PRIMARY KEY (`cid`);
 
 --
+-- Indexes for table `tblorder`
+--
+ALTER TABLE `tblorder`
+  ADD PRIMARY KEY (`oid`);
+
+--
 -- Indexes for table `tblproduct`
 --
 ALTER TABLE `tblproduct`
@@ -134,13 +176,19 @@ ALTER TABLE `tbluser`
 -- AUTO_INCREMENT for table `tblcart`
 --
 ALTER TABLE `tblcart`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tblorder`
+--
+ALTER TABLE `tblorder`
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tblproduct`
 --
 ALTER TABLE `tblproduct`
-  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `pid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tbluser`
