@@ -212,7 +212,7 @@ if (isset($_POST['addtocart'])) {
       <div class="swiper menu-slider">
          <div class="swiper-wrapper">
             <div class="swiper-slide slide">
-               <h3 class="title">Namkeen</h3>
+               <h3 class="title">Namkeens</h3>
                <div class="box-container">
                   <?php
                   include 'partials/datacon.php';
