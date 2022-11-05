@@ -92,7 +92,7 @@ if (isset($_SESSION['loggedin'])) {
                     $mail->Host       = 'smtp.gmail.com';
                     $mail->SMTPAuth   = true;
                     $mail->Username   = 'pateldryfruit55@gmail.com';
-                    $mail->Password   = 'tynfuhtpugepkiku';
+                    $mail->Password   = 'smdklbxjrbplrqtg';
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
                     $mail->Port       = 465;
 
