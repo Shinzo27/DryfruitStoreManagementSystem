@@ -105,8 +105,7 @@ include 'datacon.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Products
-                        <a href="addproduct.php" class="btn btn-primary float-right" style="float:right;">Add Product</a>
+                    <h4>Feedback
                     </h4>
                 </div>
 
@@ -116,25 +115,25 @@ include 'datacon.php';
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Products
+                            <span><i class="bi bi-table me-2"></i></span> Feedback
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example" class="table table-striped data-table" style="width: 100%">
                                     <thead>
                                         <tr>
-                                            <th>Product Name</th>
-                                            <th>Category</th>
-                                            <th>Image Path</th>
-                                            <th>Price</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Title</th>
+                                            <th>Message</th>
+                                            <th>Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
 
-                                        $query = "SELECT * FROM tblproduct";
+                                        $query = "SELECT * FROM tblfeedback";
                                         $data = mysqli_query($conn, $query);
                                         $result = mysqli_fetch_row($data);
 
@@ -142,20 +141,20 @@ include 'datacon.php';
                                             while ($rows = mysqli_fetch_assoc($data)) {
                                         ?>
                                                 <tr>
-                                                    <td><?php echo $rows['pname']; ?></td>
-                                                    <td><?php echo $rows['category']; ?></td>
-                                                    <td><?php echo $rows['pimage']; ?></td>
-                                                    <td><?php echo $rows['price']; ?></td>
-                                                    <td><?php echo $rows['status']; ?></td>
-                                                    <td>
-                                                        <a class="btn btn-primary btn-sm" href="updateproduct.php?id=<?php echo $rows['pid']; ?>">Edit</a>
-                                                        <a class="btn btn-primary btn-sm" onclick="return confirm('are you sure you want to delete?')" href="deleteproduct.php?id=<?php echo $rows['pid']; ?>">Delete</a>
-                                                    </td>
-                                                </tr>
-                                        <?php
+                                                    <td><?php echo $rows['fname']; ?></td>
+                                                    <td><?php echo $rows['lname']; ?></td>
+                                                    <td><?php echo $rows['email']; ?></td>
+                                                    <td><?php echo $rows['title']; ?></td>
+                                                    <td><?php echo $rows['message']; ?></td>
+                                                    <td><?php echo $rows['date']; ?></td>
+                                                <?php
                                             }
+                                                ?>
+                                                </tr>
+                                            <?php
                                         }
-                                        ?>
+
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>

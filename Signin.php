@@ -57,7 +57,9 @@ if (isset($_SESSION['updated_password'])) {
 
     <?php
     $loggedin = false;
-    $notselected = false;
+
+    $notexist = false;
+    $wrongpass = false;
     if (isset($_SESSION['loggedin'])) {
         $loggedin = true;
     }
@@ -66,78 +68,39 @@ if (isset($_SESSION['updated_password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
         $login = false;
-        $notexist = false;
 
-        if ($_POST['role'] == "customer") {
-            $sql = "select * from tbluser where email='$email' and role='customer'";
-            $result = mysqli_query($conn, $sql);
-            $num = mysqli_num_rows($result);
-            if ($num == 1) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    if (password_verify($password, $row['password'])) {
-                        $login = true;
-                        $loguname = $row['username'];
-                        $userid = $row['uid'];
+        $query = "select * from tbluser where email='$email'";
+        $result = mysqli_query($conn, $query);
+        $num = mysqli_num_rows($result);
+        if ($num == 1) {
+            while ($rows = mysqli_fetch_assoc($result)) {
+                if (password_verify($password, $rows['password'])) {
+                    $login = true;
+                    $loguname = $rows['username'];
+                    $userid = $rows['uid'];
+                    if ($rows['role'] == 'customer') {
+                        session_start();
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['loguname'] = $loguname;
+                        $_SESSION['uid'] = $userid;
+                        header("location: index.php");
+                    } else if ($rows['role'] == 'admin') {
+                        session_start();
+                        $_SESSION['admin'] = true;
+                        $_SESSION['loggedin'] = true;
+                        $_SESSION['loguname'] = $loguname;
+                        $_SESSION['time'] = time();
+                        header("location: admin\index.php");
                     }
+                } else {
+                    $wrongpass = "Wrong Password! Enter Correct Password!";
                 }
-            } else {
-                $notexist = "User Not Exist! Register First!";
-            }
-            if ($login) {
-                session_start();
-                $_SESSION['loggedin'] = true;
-                $_SESSION['loguname'] = $loguname;
-                $_SESSION['uid'] = $userid;
-                header("location: index.php");
-            }
-            if ($notexist) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error!</strong> ' . $notexist . '
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-            }
-        } else if ($_POST['role'] == "admin") {
-            $sql = "select * from tbluser where email='$email' and role='admin'";
-            $result = mysqli_query($conn, $sql);
-            $num = mysqli_num_rows($result);
-            if ($num == 1) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    if (password_verify($password, $row['password'])) {
-                        $admin = true;
-                        $loguname = $row['username'];
-                    }
-                }
-            } else {
-                $adminnotexist = "Admin Not Exist! Contact Admin!";
-            }
-
-            if ($admin) {
-                session_start();
-                $_SESSION['admin'] = true;
-                $_SESSION['loggedin'] = true;
-                $_SESSION['loguname'] = $loguname;
-                $_SESSION['time'] = time();
-                header("location: admin\index.php");
-            }
-            if ($adminnotexist) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error!</strong> ' . $notexist . '
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
             }
         } else {
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Select your designation first!</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
+            $notexist = "User Not Exist! Register First!";
         }
     }
-    if ($updated_password) {
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Error!</strong>"Your password is updated successfully!"
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
-    }
+
     ?>
     <section class="header">
 
@@ -163,7 +126,6 @@ if (isset($_SESSION['updated_password'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
-            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>
@@ -174,7 +136,21 @@ if (isset($_SESSION['updated_password'])) {
         <div id="menu-btn" class="fas fa-bars"></div>
 
     </section>
+    <?php
+    if ($notexist) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> ' . $notexist . '
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
 
+    if ($wrongpass) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong></strong> ' . $wrongpass . '
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>';
+    }
+    ?>
     <!-- form section start -->
     <section class="w3l-mockup-form">
         <div class="container">
@@ -191,12 +167,6 @@ if (isset($_SESSION['updated_password'])) {
                         <p>Welcome to our store where you can get everything fresh with fresh vibes!</p>
 
                         <form action="" method="post">
-                            <select style="width: 90px; height: 30px; text-align: center; background-color: #7d2ae8; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="role">
-                                <option hidden>Role</option>
-                                <option value="customer">Customer</option>
-                                <option value="admin">Admin</option>
-                            </select>
-                            <label style="color: #666; padding-left: 10px; font-size: 15px;">Select Customer/admin</label><br><br>
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" style="margin-bottom: 2px;" required>
                             <p><a href="forgetpassword.php" style="margin-bottom: 15px; display: block; text-align: right;">Forgot Password?</a></p>

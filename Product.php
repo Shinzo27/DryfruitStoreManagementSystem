@@ -13,6 +13,7 @@ $exists = false;
 if (isset($_POST['addtocart'])) {
    if (isset($_SESSION['uid'])) {
       $uid = $_SESSION['uid'];
+      $pid = $_POST['pid'];
       $pname = $_POST['pname'];
       $price = $_POST['price'];
       $quantity = $_POST['quantity'];
@@ -22,10 +23,20 @@ if (isset($_POST['addtocart'])) {
 
       if (mysqli_num_rows($check_cart_numbers) > 0) {
          $exists = true;
+      } else if ($quantity <= 0) {
+         echo "<script> alert('Product Quantity must be greater than 0'); </script>";
       } else {
-         $result = mysqli_query($conn, "INSERT INTO `tblcart`(uid, pname, price, quantity, date) VALUES('$uid', '$pname', '$price', '$quantity', current_time())") or die('query failed');
-         if ($result) {
-            $success = true;
+         $selectcart = "select * from tblstock where pid='$pid'";
+         $selectresult = mysqli_query($conn, $selectcart);
+         $rows = mysqli_fetch_assoc($selectresult);
+         $avlstock = $rows['stock'];
+         if ($quantity <= $avlstock) {
+            $result = mysqli_query($conn, "INSERT INTO `tblcart`(uid, pid, pname, price, quantity, date) VALUES('$uid', '$pid', '$pname', '$price', '$quantity', current_time())") or die('query failed');
+            if ($result) {
+               $success = true;
+            }
+         } else {
+            echo "<script> alert('Not Enough Stock'); </script>";
          }
       }
    } else {
@@ -89,7 +100,6 @@ if (isset($_POST['addtocart'])) {
          }
          ?>
          <a href="cart.php">Cart</a>
-         <a href="showorder.php">Orders</a>
          <?php
          if ($loggedin == true) { ?>
             <a href="logout.php">Log out</a>
@@ -145,8 +155,9 @@ if (isset($_POST['addtocart'])) {
                            <h3><?php echo $row['pname']; ?></h3>
                            <br>
                            <form method="post">
+                              <input type="hidden" name="pid" value="<?php echo $row['pid']; ?>">
                               <input type="hidden" name="pname" value="<?php echo $row['pname']; ?>">
-                              <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
+                              <input type="hidden" name="price" value="<?php echo ($row['price'] / 4); ?>">
                               <input type="text" size="8" placeholder="quantity" name="quantity" style="height: 45px; font-size: 18px;" required>
                               <select name="weight" style="width: 70px; height: 28px; font-size: 15px;" required>
                                  <option value="250gm">250gms</option>
@@ -157,7 +168,7 @@ if (isset($_POST['addtocart'])) {
                         </div>
                         <div class="img"><img src="admin/<?php echo $row['pimage']; ?>" style="float: right; width: 100px; height: 100px;" required>
                         </div>
-                        <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                        <div class="price">₹<?php echo ($row['price'] / 4); ?>/250gm</div>
                      </div>
                   <?php endwhile; ?>
                </div>
@@ -187,8 +198,9 @@ if (isset($_POST['addtocart'])) {
                            <h3><?php echo $row['pname']; ?></h3>
                            <br>
                            <form method="post">
+                              <input type="hidden" name="pid" value="<?php echo $row['pid']; ?>">
                               <input type="hidden" name="pname" value="<?php echo $row['pname']; ?>">
-                              <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
+                              <input type="hidden" name="price" value="<?php echo ($row['price'] / 4); ?>">
                               <input type="text" size="8" name="quantity" placeholder="quantity" style="height: 45px; font-size: 18px;" required>
                               <select name="weight" style="width: 70px; height: 28px; font-size: 15px;" required>
                                  <option value="250gm">250gms</option>
@@ -199,7 +211,7 @@ if (isset($_POST['addtocart'])) {
                         </div>
                         <div class="img"><img src="admin/<?php echo $row['pimage'] ?>" style="float: right; width: 100px; height: 100px;">
                         </div>
-                        <div class="price">₹<?php echo $row['price']; ?>/kg</div>
+                        <div class="price">₹<?php echo $row['price'] / 4; ?>/250gm</div>
                      </div>
                   <?php endwhile; ?>
                </div>
@@ -225,6 +237,7 @@ if (isset($_POST['addtocart'])) {
                            <h3><?php echo $row['pname']; ?></h3>
                            <br>
                            <form method="post">
+                              <input type="hidden" name="pid" value="<?php echo $row['pid']; ?>">
                               <input type="hidden" name="pname" value="<?php echo $row['pname']; ?>">
                               <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
                               <input type="text" size="8" name="quantity" placeholder="quantity" style="height: 45px; font-size: 18px;" required>
@@ -266,6 +279,7 @@ if (isset($_POST['addtocart'])) {
                            <h3><?php echo $row['pname']; ?></h3>
                            <br>
                            <form method="post">
+                              <input type="hidden" name="pid" value="<?php echo $row['pid']; ?>">
                               <input type="hidden" name="pname" value="<?php echo $row['pname']; ?>">
                               <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
                               <input type="text" size="8" name="quantity" placeholder="quantity" style="height: 45px; font-size: 18px;" required>
@@ -304,6 +318,7 @@ if (isset($_POST['addtocart'])) {
                            <h3><?php echo $row['pname']; ?></h3>
                            <br>
                            <form method="post">
+                              <input type="hidden" name="pid" value="<?php echo $row['pid']; ?>">
                               <input type="hidden" name="pname" value="<?php echo $row['pname']; ?>">
                               <input type="hidden" name="price" value="<?php echo $row['price']; ?>">
                               <input type="text" size="8" name="quantity" placeholder="quantity" style="height: 45px; font-size: 18px;" required>

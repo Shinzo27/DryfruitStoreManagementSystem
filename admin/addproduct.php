@@ -80,7 +80,7 @@ $error = "";
                             <input type="file" id="file" name="file" multiple />
                             <input type="text" name="price" class="name" placeholder="Enter Product Price" required>
                             <input type="text" name="stock" class="name" placeholder="Enter Opening Stock" required>
-                            <label style="color: #666; padding-left: 10px; font-size: 15px;">Enter Stock in Kg or Packets!</label><br><br>
+                            <label style="color: #666; padding-left: 10px; font-size: 15px;">Enter Stock Of Packets Of 250gms in dryfruit and driedfruits!</label><br><br>
                             <select style="width: 90px; height: 30px; text-align: center; background-color: #4169e1; color: white; font-size: 14px; border-radius: 5px 5px 5px 5px;" name="status">
                                 <option hidden>Status</option>
                                 <option value="activate">Activate</option>

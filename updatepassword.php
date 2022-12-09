@@ -120,7 +120,6 @@ if (isset($_SESSION['email'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
-            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>

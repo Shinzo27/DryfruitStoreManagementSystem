@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'partials\datacon.php';
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
@@ -118,7 +119,8 @@ if (isset($_SESSION['loggedin'])) {
                     $sql = "INSERT INTO `tbluser`(`username`, `email`, `password`, `role`, `otp`, `date`) VALUES ('$name','$email','$hash','customer','$otp',current_time())";
                     $run = mysqli_query($conn, $sql);
                     if ($run) {
-                        $showsuccess = "Otp Sent to your Email!";
+                        $_SESSION['email'] = $email;
+                        header("location: Enterotp.php");
                     }
                 } catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
@@ -145,40 +147,6 @@ if (isset($_SESSION['loggedin'])) {
 
     ?>
 
-    <?php
-    $regerror = false;
-    $regsuccess = false;
-
-    if (isset($_POST['submit'])) {
-        $username = $_POST['name'];
-        $email = $_POST['email'];
-        $regotp = $_POST['regotp'];
-
-        $regquery = "select * from tbluser where email='$email' and otp='$regotp'";
-        $result = mysqli_query($conn, $regquery);
-        $regcount = mysqli_num_rows($result);
-
-        if ($regcount == 1) {
-            $regsuccess = "Register Successful! Now You Can Login.";
-        } else {
-            $regerror = "Invalid OTP! Insert Correct OTP!";
-        }
-    }
-
-    if ($regsuccess) {
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> ' . $regsuccess . '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-        header("location:signin.php");
-    }
-    if ($regerror) {
-        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error!</strong> ' . $regerror . '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>';
-    }
-    ?>
 
     <section class="header">
 
@@ -204,7 +172,6 @@ if (isset($_SESSION['loggedin'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
-            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>
@@ -236,8 +203,6 @@ if (isset($_SESSION['loggedin'])) {
                             <input type="email" class="email" name="email" placeholder="Enter Your Email" value="" required>
                             <input type="password" class="password" name="password" placeholder="Enter Your Password" required>
                             <button name="getotp" class="btn">Get Otp</button><br>
-                            <br><input type="text" name="regotp" placeholder="Enter Your Otp">
-                            <button name="submit" class="btn" type="submit">Register</button>
                         </form>
                         <div class="social-icons">
                             <p>Have an account! <a href="Signin.php">Login</a>.</p>

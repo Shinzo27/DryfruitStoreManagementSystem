@@ -1,3 +1,9 @@
+<?php
+include 'datacon.php';
+?>
+<?php
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +20,7 @@
 </head>
 
 <body>
+
     <!-- top navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
@@ -73,9 +80,17 @@
                             <span class="me-2"><i class="bi bi-chevron-right"></i></span>
                             <span>Sales</span>
                         </a>
-                        <a href="admin.php" class="nav-link px-3 active">
+                        <a href="stocks.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-person-fill"></i></span>
+                            <span>Stocks</span>
+                        </a>
+                        <a href="admin.php" class="nav-link px-3 active">
+                            <span class="me-2"><i class="bi-person-badge"></i></span>
                             <span>Admin</span>
+                        </a>
+                        <a href="feedbacks.php" class="nav-link px-3 active">
+                            <span class="me-2"><i class="bi-heart-fill"></i></span>
+                            <span>Feedbacks</span>
                         </a>
                     </li>
                     <li class="my-4">
@@ -90,7 +105,68 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Sales</h4>
+                    <h4>Sales
+                    </h4>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12 mb-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <span><i class="bi bi-table me-2"></i></span> Sales
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="table table-striped data-table" style="width: 100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Order Id</th>
+                                            <th>Name</th>
+                                            <th>Number</th>
+                                            <th>Method</th>
+                                            <th>Address</th>
+                                            <th>Total</th>
+                                            <th>Date</th>
+                                            <th>Payment Status</th>
+                                            <th>Delivery Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+
+                                        $query = "SELECT * FROM tblorder";
+                                        $data = mysqli_query($conn, $query);
+                                        $result = mysqli_fetch_row($data);
+
+                                        if ($result) {
+                                            while ($rows = mysqli_fetch_assoc($data)) {
+                                        ?>
+                                                <tr>
+                                                    <td><?php echo $rows['oid']; ?></td>
+                                                    <td><?php echo $rows['name']; ?></tc>
+                                                    <td><?php echo $rows['number']; ?></td>
+                                                    <td><?php echo $rows['method']; ?></td>
+                                                    <td><?php echo $rows['address']; ?></td>
+                                                    <td><?php echo $rows['total_price']; ?></td>
+                                                    <td><?php echo $rows['placed_on']; ?></td>
+                                                    <td><?php echo $rows['payment_status']; ?></td>
+                                                    <td><?php echo $rows['delivery_status']; ?></td>
+                                                    <td>
+                                                        <a class="btn btn-primary btn-sm" href="updatesale.php?id=<?php echo $rows['oid']; ?>">Edit</a>
+                                                        <!-- <a class="btn btn-primary btn-sm" onclick="return confirm('are you sure you want to delete?')" href="deleteproduct.php?id=<?php echo $rows['oid']; ?>">Delete</a> -->
+                                                    </td>
+                                                </tr>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,6 +177,11 @@
     <script src="./js/jquery.dataTables.min.js"></script>
     <script src="./js/dataTables.bootstrap5.min.js"></script>
     <script src="./js/script.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
 </body>
 
 </html>

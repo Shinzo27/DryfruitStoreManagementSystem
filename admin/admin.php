@@ -84,9 +84,17 @@ include 'datacon.php';
                             <span class="me-2"><i class="bi bi-chevron-right"></i></span>
                             <span>Sales</span>
                         </a>
-                        <a href="admin.php" class="nav-link px-3 active">
+                        <a href="stocks.php" class="nav-link px-3 active">
                             <span class="me-2"><i class="bi bi-person-fill"></i></span>
+                            <span>Stocks</span>
+                        </a>
+                        <a href="admin.php" class="nav-link px-3 active">
+                            <span class="me-2"><i class="bi-person-badge"></i></span>
                             <span>Admin</span>
+                        </a>
+                        <a href="feedbacks.php" class="nav-link px-3 active">
+                            <span class="me-2"><i class="bi-heart-fill"></i></span>
+                            <span>Feedbacks</span>
                         </a>
                     </li>
                     <li class="my-4">

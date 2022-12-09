@@ -1,11 +1,34 @@
 <?php
+include 'partials\datacon.php';
 session_start();
+$regerror = false;
+$regsuccess = false;
+$email = $_SESSION['email'];
+
+if (isset($_POST['submit'])) {
+
+    $regotp = $_POST['regotp'];
+
+    $regquery = "select * from tbluser where email='$email' and otp='$regotp'";
+    $result = mysqli_query($conn, $regquery);
+    $regcount = mysqli_num_rows($result);
+
+    if ($regcount == 1) {
+        $regsuccess = "Register Successful! Now You Can Login.";
+    } else {
+        $regerror = "Invalid OTP! Insert Correct OTP!";
+    }
+}
+
+
+?>
+
+<?php
 include 'partials\datacon.php';
 $loggedin = false;
 if (isset($_SESSION['loggedin'])) {
     $loggedin = true;
 }
-
 
 ?>
 
@@ -20,12 +43,9 @@ if (isset($_SESSION['loggedin'])) {
     <title>Patel's Dryfruit and Masala</title>
 
     <!-- font awesome cdn link  -->
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/loginstyle.css" type="text/css" media="all" />
-
-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
@@ -49,15 +69,7 @@ if (isset($_SESSION['loggedin'])) {
 </head>
 
 <body>
-    <?php
-    $mailsent = false;
-    if ($mailsent) {
-        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Success!</strong> ' . $mailsent . '
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
-    }
-    ?>
+
     <section class="header">
 
         <img src="images\logo.png" class="logo">
@@ -92,7 +104,21 @@ if (isset($_SESSION['loggedin'])) {
         <div id="menu-btn" class="fas fa-bars"></div>
 
     </section>
-
+    <?php
+    if ($regsuccess) {
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> ' . $regsuccess . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+        header("location:signin.php");
+    }
+    if ($regerror) {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> ' . $regerror . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+    }
+    ?>
     <!-- form section start -->
     <section class="w3l-mockup-form">
         <div class="container">
@@ -101,16 +127,20 @@ if (isset($_SESSION['loggedin'])) {
                 <div class="main-mockup">
                     <div class="w3l_form align-self">
                         <div class="left_grid_info">
-                            <img src="images\undraw_appreciate_it_qnkk.svg" alt="">
+                            <img src="images\undraw_predictive_analytics_re_wxt8.svg" alt="">
                         </div>
                     </div>
-                    <div class="content-wthree" style="padding-top: 15%;">
-                        <h2>Reset Password</h2>
-                        <p>Forget Password? Don't worry just enter your email and Check Email</p>
+                    <div class="content-wthree">
+                        <h2>Register Now</h2>
+                        <p>Join Us In This Journey By Being A Part Of It! </p>
+
                         <form action="" method="post">
-                            <input type="email" class="email" name="email" placeholder="Enter Your Email" required>
-                            <button name="submit" class="btn" type="submit">Reset Password</button>
+                            <br><input type="text" name="regotp" placeholder="Enter Your Otp">
+                            <button name="submit" class="btn" type="submit">Register</button>
                         </form>
+                        <div class="social-icons">
+                            <p>Have an account! <a href="Signin.php">Login</a>.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -133,92 +163,3 @@ if (isset($_SESSION['loggedin'])) {
 </body>
 
 </html>
-<?php
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-require('PHPMailer.php');
-require('Exception.php');
-require('SMTP.php');
-
-$showsuccess = false;
-$showerror = false;
-$mailsent = true;
-
-if (isset($_POST['submit'])) {
-
-    $email = $_POST['email'];
-
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $showerror = " Invalid Email-Id";
-    } else {
-        $emailSql = "SELECT * FROM tbluser where email = '$email' ";
-        $query = mysqli_query($conn, $emailSql);
-        $emailcount = mysqli_num_rows($query);
-
-        if ($emailcount <= 0) {
-            $showerror = " Email doesn't exists";
-        } else {
-
-            $_SESSION['email'] = $email;
-            $otp = rand(100000, 999999);
-            $mail = new PHPMailer(true);
-            try {
-
-                //Server settings
-
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';
-                $mail->SMTPAuth   = true;
-                $mail->Username   = 'pateldryfruit55@gmail.com';
-                $mail->Password   = 'tynfuhtpugepkiku';
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-                $mail->Port       = 465;
-
-
-
-                //Recipients
-                $mail->setFrom('20bmiit031@gmail.com', 'Reset Password for Patel\'s Dryfruit And Masala');
-                $mail->addAddress($email);     //Add a recipient
-
-                $mail->isHTML(true);
-                //$msg=file_get_contents("beefree-wbrjvkqo22s.php");
-
-                $mail->Subject = 'Reset Password!';
-
-                $mail->Body    = "<b>Dear User</b>
-                    <h3>We received a request to reset your password.</h3>
-                    <p>Kindly click the below link to reset your password</p>
-                    http://localhost/dsms/updatepassword.php
-                    <br><br>
-                    <p>With regrads,</p>
-                    <b>Patel's Dryfruit And Masala</b>";
-
-                $mail->MsgHTML = ('h');
-
-
-
-                if (!$mail->send()) {
-?>
-                    <script>
-                        alert("<?php echo " Invalid Email " ?>");
-                    </script>
-<?php
-                } else {
-                    $mailsent = "Reset mail had sent to your email address! Kindly Check it!";
-                }
-            } catch (Exception $e) {
-                echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-            }
-        }
-    }
-}
-
-
-
-
-?>

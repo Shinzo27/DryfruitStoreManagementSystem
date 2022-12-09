@@ -51,9 +51,17 @@ if (isset($_POST['order_btn'])) {
         if (mysqli_num_rows($order_query) > 0) {
             $alreadyplaced = true;
         } else {
-            mysqli_query($conn, "INSERT INTO `tblorder`(uid, name, number, method, address, total_products, total_price, placed_on) VALUES('$uid', '$name', '$number', '$payment', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
-            $placed = true;
-            mysqli_query($conn, "DELETE FROM `tblcart` WHERE uid = '$uid'") or die('query failed');
+            $_SESSION['name'] = $name;
+            $_SESSION['number'] = $number;
+            $_SESSION['payment'] = $payment;
+            $_SESSION['total_products'] = $total_products;
+            $_SESSION['total_price'] = $cart_total;
+            $_SESSION['address'] = $address;
+            $_SESSION['placed_on'] = $placed_on;
+            header("location: checkout.php");
+            // mysqli_query($conn, "INSERT INTO `tblorder`(uid, name, number, method, address, total_products, total_price, placed_on) VALUES('$uid', '$name', '$number', '$payment', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
+            // $placed = true;
+            // mysqli_query($conn, "DELETE FROM `tblcart` WHERE uid = '$uid'") or die('query failed');
         }
     }
 }
@@ -111,7 +119,6 @@ if (isset($_POST['order_btn'])) {
             }
             ?>
             <a href="cart.php">Cart</a>
-            <a href="showorder.php">Orders</a>
             <?php
             if ($loggedin == true) { ?>
                 <a href="logout.php">Log out</a>
@@ -200,9 +207,7 @@ if (isset($_POST['order_btn'])) {
                         <span>Payment Method</span><br><br>
                         <select name="payment" style="width: 150px; height: 50px; text-align: center; background-color: #cd9452; color: white; font-size: 16px; border-radius: 5px 5px 5px 5px;" required>
                             <option value="cashondelivery">Cash On Delivery</option>
-                            <option value="paypal">Paypal</option>
-                            <option value="upi">Upi</option>
-                            <option value="banktransfer">Bank Transfer</option>
+                            <option value="prepaid">Prepaid</option>
                         </select>
                     </div>
                     <div class="inputBox" style="padding-top: 7px;">

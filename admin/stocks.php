@@ -105,8 +105,7 @@ include 'datacon.php';
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Products
-                        <a href="addproduct.php" class="btn btn-primary float-right" style="float:right;">Add Product</a>
+                    <h4>Stocks
                     </h4>
                 </div>
 
@@ -116,7 +115,7 @@ include 'datacon.php';
                 <div class="col-md-12 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            <span><i class="bi bi-table me-2"></i></span> Products
+                            <span><i class="bi bi-table me-2"></i></span> Stocks
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -125,10 +124,8 @@ include 'datacon.php';
                                         <tr>
                                             <th>Product Name</th>
                                             <th>Category</th>
-                                            <th>Image Path</th>
                                             <th>Price</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
+                                            <th>Stock</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -140,22 +137,31 @@ include 'datacon.php';
 
                                         if ($result) {
                                             while ($rows = mysqli_fetch_assoc($data)) {
+                                                $pid = $rows['pid'];
                                         ?>
                                                 <tr>
                                                     <td><?php echo $rows['pname']; ?></td>
                                                     <td><?php echo $rows['category']; ?></td>
-                                                    <td><?php echo $rows['pimage']; ?></td>
                                                     <td><?php echo $rows['price']; ?></td>
-                                                    <td><?php echo $rows['status']; ?></td>
+                                                    <?php
+                                                    $query = "select * from tblstock where pid='$pid'";
+                                                    $result = mysqli_query($conn, $query);
+                                                    $row = mysqli_fetch_assoc($result)
+                                                    ?>
+                                                    <td><?php echo $row['stock']; ?></td>
                                                     <td>
-                                                        <a class="btn btn-primary btn-sm" href="updateproduct.php?id=<?php echo $rows['pid']; ?>">Edit</a>
-                                                        <a class="btn btn-primary btn-sm" onclick="return confirm('are you sure you want to delete?')" href="deleteproduct.php?id=<?php echo $rows['pid']; ?>">Delete</a>
+                                                        <div class="btn-group" role="group">
+                                                            <a href="addstock.php?id=<?php echo $rows['pid']; ?>"><input id="btnGroupDrop1" type="submit" value="Restock" class="btn btn-primary dropdown-toggle btn-sm rounded-0 py-0"></a>
+                                                        </div>
                                                     </td>
-                                                </tr>
-                                        <?php
+                                                <?php
                                             }
+                                                ?>
+                                                </tr>
+                                            <?php
                                         }
-                                        ?>
+
+                                            ?>
                                     </tbody>
                                 </table>
                             </div>
