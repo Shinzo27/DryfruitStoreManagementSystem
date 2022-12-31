@@ -187,9 +187,9 @@ if (isset($_POST['submit'])) {
                                                 </div>
                                             </td>
                                             <td class="text-right font-weight-semibold align-middle p-4"><?php echo $rows['name']; ?></td>
-                                            <td class="align-middle p-2"><input type="text" class="form-control text-center" value="<?php echo $rows['total_price']; ?>" readonly></td>
+                                            <td class="align-middle p-2"><input type="text" class="form-control text-center" value="₹ <?php echo $rows['total_price']; ?>" readonly></td>
                                             <td class="text-right font-weight-semibold align-middle p-4"> <?php echo $rows['placed_on']; ?></td>
-                                            <td class="text-right font-weight-semibold align-middle p-4">₹ <?php echo $rows['delivery_status']; ?></td>
+                                            <td class="text-right font-weight-semibold align-middle p-4"> <?php echo $rows['delivery_status']; ?></td>
                                         </tr>
                                     <?php
                                     }

@@ -123,7 +123,14 @@ if (isset($_GET['delete'])) {
                                             </div>
                                         </td>
                                         <td class="text-right font-weight-semibold align-middle p-4"><?php echo $rows['price']; ?></td>
-                                        <td class="align-middle p-2"><input type="text" class="form-control text-center" value="<?php echo $rows['quantity']; ?>"><button type="button" style="background-color:blueviolet; height: 20px; width:55px; color:white; font-size: 10px; text-align:center;">Update</button></td>
+                                        <td class="align-middle p-2">
+                                            <form action="updatecart.php" method="post">
+                                                <input type="hidden" name="product_id" value="<?php echo $rows['pid']; ?>">
+                                                <input type="hidden" name="cart_id" value="<?php echo $rows['cid']; ?>">
+                                                <input type="text" name="cart_quantity" value="<?php echo $rows['quantity']; ?>">
+                                                <input type="submit" name="update_cart" value="Update" class="option-btn" style="background-color:blueviolet; height: 30px; width:50px; color:white; font-size: 10px; text-align:center;">
+                                            </form>
+                                        </td>
                                         <td class="text-right font-weight-semibold align-middle p-4">₹ <?php echo $sub_total = ($rows['quantity'] * $rows['price']); ?></td>
                                         <td class="text-center align-middle px-0"><a href="cart.php?delete=<?php echo $rows['cid']; ?>" style="color:black;" class="fas fa-times" onclick="return confirm('delete this from cart?');"></a></td>
                                     </tr>
